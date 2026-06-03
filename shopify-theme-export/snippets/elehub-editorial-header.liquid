@@ -1,0 +1,72 @@
+<div class="elehub-editorial-header">
+  <div class="elehub-editorial-header__announce">
+    Ethical Elephant Encounters &nbsp;&middot;&nbsp; No Riding &nbsp;&middot;&nbsp; No Shows &nbsp;&middot;&nbsp; No Force &nbsp;&mdash;&nbsp;
+    <a href="/#booking">Book Your Experience</a>
+  </div>
+
+  <div class="elehub-editorial-header__nav-wrap">
+    <nav class="elehub-editorial-header__nav" aria-label="Primary navigation">
+      <div class="elehub-editorial-header__nav-left">
+        <div class="elehub-editorial-header__tours">
+          <a class="elehub-editorial-header__tours-trigger" href="/#tours" aria-haspopup="true">Tours</a>
+          <div class="elehub-editorial-header__tours-menu" aria-label="Tour departure locations">
+            <a href="/?tour-region=cm#tours">Chiang Mai<span>9 Northern Thailand tours</span></a>
+            <a href="/?tour-region=bk#tours">From Bangkok<span>2 Chonburi sanctuary tours</span></a>
+            <a href="/?tour-region=pt#tours">From Pattaya<span>2 Chonburi sanctuary tours</span></a>
+          </div>
+        </div>
+        <a href="/#camps">Our Camps</a>
+        <a href="/#story">Our Story</a>
+        <a href="/#ethics">Ethics</a>
+        <a href="/blogs/elephant-sanctuary-thailand-guides">Journal</a>
+        <a href="/#faq">FAQ</a>
+      </div>
+      <a href="{{ routes.root_url }}" class="elehub-editorial-header__logo">Thaielehub</a>
+      <div class="elehub-editorial-header__nav-right">
+        <button class="elehub-editorial-header__hamburger" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="elehub-editorial-header__drawer">
+    <button class="elehub-editorial-header__drawer-close" type="button" aria-label="Close menu">&times;</button>
+    <div class="elehub-editorial-header__drawer-group">
+      <strong>Tours by departure area</strong>
+      <a href="/?tour-region=cm#tours">Chiang Mai Tours</a>
+      <a href="/?tour-region=bk#tours">From Bangkok</a>
+      <a href="/?tour-region=pt#tours">From Pattaya</a>
+    </div>
+    <a href="/#camps">Our Camps</a>
+    <a href="/#story">Our Story</a>
+    <a href="/#ethics">Our Ethics</a>
+    <a href="/blogs/elephant-sanctuary-thailand-guides">Elephant Care Journal</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#booking">Book Now</a>
+  </div>
+  <button class="elehub-editorial-header__overlay" type="button" aria-label="Close menu"></button>
+</div>
+
+<script>
+  (() => {
+    const header = document.currentScript.previousElementSibling;
+    const toggle = header.querySelector('.elehub-editorial-header__hamburger');
+    const drawer = header.querySelector('.elehub-editorial-header__drawer');
+    const overlay = header.querySelector('.elehub-editorial-header__overlay');
+    const close = () => {
+      drawer.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', () => {
+      drawer.classList.add('is-open');
+      overlay.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    });
+    header.querySelector('.elehub-editorial-header__drawer-close').addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+  })();
+</script>

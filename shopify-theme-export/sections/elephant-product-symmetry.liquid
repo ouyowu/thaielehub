@@ -1,0 +1,559 @@
+{%- liquid
+  assign hero_image = 'elehub-selected-003.jpg'
+  assign feeding_image = 'elehub-selected-006.jpg'
+  assign walking_image = 'elehub-selected-015.jpg'
+  assign water_image = 'elehub-selected-020.jpg'
+  assign extra_image_1 = 'elehub-selected-011.jpg'
+  assign extra_image_2 = 'elehub-selected-016.jpg'
+  assign extra_image_3 = 'elehub-selected-082.jpg'
+  assign display_title = product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub'
+  if product.handle == 'living-green-chiang-mai-ethical-half-day-morning'
+    assign display_title = 'Thaielehub Chiang Mai Half-Day Encounter (Morning)'
+  elsif product.handle == 'living-green-chiang-mai-ethical-half-day-afternoon'
+    assign display_title = 'Thaielehub Chiang Mai Half-Day Encounter (Afternoon)'
+  elsif product.handle == 'living-green-chiang-mai-full-day-pad-thai-cooking'
+    assign display_title = 'Thaielehub Chiang Mai Full-Day Encounter + Pad Thai'
+  elsif product.handle == 'living-green-chiang-mai-elephants-bamboo-rafting-cooking'
+    assign display_title = 'Thaielehub Chiang Mai Full-Day Encounter + Bamboo Rafting'
+  elsif product.handle == 'living-green-chiang-mai-elephants-doi-inthanon-trek'
+    assign display_title = 'Thaielehub Chiang Mai Full-Day Encounter + Doi Inthanon Trek'
+  elsif product.handle == 'casa-de-mango-cooking-ethical-elephant-sanctuary'
+    assign display_title = 'Thaielehub Chiang Mai Cooking Class + Elephant Encounter'
+  elsif product.handle == 'chonburi-ethical-half-day-morning-bangkok-departure'
+    assign display_title = 'Thaielehub Bangkok Departure Half-Day Encounter (Morning)'
+  elsif product.handle == 'chonburi-ethical-half-day-afternoon-bangkok-departure'
+    assign display_title = 'Thaielehub Bangkok Departure Half-Day Encounter (Afternoon)'
+  elsif product.handle == 'chonburi-ethical-half-day-morning-pattaya-departure'
+    assign display_title = 'Thaielehub Pattaya Departure Half-Day Encounter (Morning)'
+  elsif product.handle == 'chonburi-ethical-half-day-afternoon-pattaya-departure'
+    assign display_title = 'Thaielehub Pattaya Departure Half-Day Encounter (Afternoon)'
+  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-morning'
+    assign display_title = 'Thaielehub Chiang Mai Observation Encounter (Morning)'
+  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-afternoon'
+    assign display_title = 'Thaielehub Chiang Mai Observation Encounter (Afternoon)'
+  elsif product.handle == 'big-boy-chiang-mai-full-day-elephants-rafting-waterfall'
+    assign display_title = 'Thaielehub Chiang Mai Full-Day Encounter + Rafting & Waterfall'
+  endif
+
+  assign location_label = 'Chiang Mai'
+  assign duration_label = 'Half-day'
+  assign pickup_region = 'Chiang Mai'
+  assign pickup_window = 'Confirmed one day before your tour'
+  assign has_bangkok_meeting_point = false
+  assign is_big_boy = false
+  assign has_cooking = false
+  assign has_rafting = false
+  assign has_trek = false
+
+  if product.title contains 'Full-Day' or product.title contains 'Full-day' or product.title contains 'Full Day'
+    assign duration_label = 'Full-day'
+  endif
+
+  if product.handle contains 'big-boy'
+    assign is_big_boy = true
+    assign hero_image = 'elehub-selected-092.jpg'
+    assign feeding_image = 'elehub-selected-085.jpg'
+    assign walking_image = 'elehub-selected-086.jpg'
+    assign water_image = 'elehub-selected-090.jpg'
+  endif
+
+  if product.handle contains 'chonburi'
+    assign location_label = 'Chonburi'
+    assign hero_image = 'elehub-selected-057.jpg'
+    assign feeding_image = 'elehub-selected-054.jpg'
+    assign walking_image = 'elehub-selected-062.jpg'
+    assign water_image = 'elehub-selected-073.jpg'
+  endif
+
+  if product.handle == 'big-boy-chiang-mai-ethical-half-day-morning'
+    assign pickup_window = '07:00 - 07:30'
+  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-afternoon'
+    assign pickup_window = '11:30 - 12:00'
+  elsif product.handle contains 'half-day-morning'
+    assign pickup_window = '07:00 - 07:30'
+  elsif product.handle contains 'half-day-afternoon'
+    assign pickup_window = '12:00 - 12:30'
+  elsif product.handle == 'living-green-chiang-mai-full-day-pad-thai-cooking' or product.handle == 'living-green-chiang-mai-elephants-bamboo-rafting-cooking'
+    assign pickup_window = '08:00 - 08:30'
+  elsif product.handle == 'living-green-chiang-mai-elephants-doi-inthanon-trek'
+    assign pickup_window = '07:00'
+  elsif product.handle == 'casa-de-mango-cooking-ethical-elephant-sanctuary'
+    assign pickup_window = '07:30'
+  elsif product.handle == 'big-boy-chiang-mai-full-day-elephants-rafting-waterfall'
+    assign pickup_window = '07:30 - 08:00'
+  endif
+
+  if product.handle contains 'bangkok-departure'
+    assign pickup_region = 'Bangkok'
+    assign has_bangkok_meeting_point = true
+    if product.handle contains 'morning'
+      assign pickup_window = '07:00 - 08:00'
+    else
+      assign pickup_window = '11:00 - 12:00'
+    endif
+  elsif product.handle contains 'pattaya-departure'
+    assign pickup_region = 'Pattaya'
+    if product.handle contains 'morning'
+      assign pickup_window = '07:45 - 08:45'
+    else
+      assign pickup_window = '11:45 - 12:45'
+    endif
+  endif
+
+  if product.handle contains 'cooking' or product.handle contains 'casa-de-mango'
+    assign has_cooking = true
+    assign extra_image_1 = 'elehub-selected-011.jpg'
+  endif
+
+  if product.handle contains 'bamboo-rafting'
+    assign has_rafting = true
+    assign water_image = 'elehub-selected-006.jpg'
+    assign extra_image_3 = 'elehub-selected-029.jpg'
+  endif
+
+  if product.handle contains 'doi-inthanon'
+    assign has_trek = true
+    assign water_image = 'elehub-selected-030.jpg'
+    assign extra_image_3 = 'elehub-selected-032.jpg'
+  endif
+
+  assign itinerary_times = '07:00 - 07:30|07:30 - 09:00|09:00 - 09:45|09:45 - 11:00|11:00 - 11:50|11:50 - 14:00' | split: '|'
+  assign itinerary_titles = 'Hotel pickup in Chiang Mai|Scenic countryside drive|Welcome and northern clothing|Meet, feed and observe the elephants|River time and wellbeing check|Local meal and return to Chiang Mai' | split: '|'
+  assign itinerary_details = 'Meet your driver at your accommodation and begin the journey in air-conditioned transport.|Travel through a rural landscape of mountain rivers, rice fields, corn fields and banana plantations.|Arrive at the sanctuary for an introduction, safety briefing and a change into traditional northern clothing.|Learn about the elephants, their histories and their natural behavior while feeding and observing them in their habitat.|Walk toward the river for elephant-led water time, followed by a gentle health check. Elephants are never forced into the water.|Enjoy a local meal, say goodbye to the herd and ride approximately 1.5 hours back to Chiang Mai.' | split: '|'
+  assign itinerary_images = 'elehub-selected-003.jpg|elehub-selected-051.jpg|elehub-selected-006.jpg|elehub-selected-015.jpg|elehub-selected-020.jpg|elehub-selected-016.jpg' | split: '|'
+
+  if product.handle == 'living-green-chiang-mai-ethical-half-day-afternoon'
+    assign itinerary_times = '12:00 - 12:30|12:30 - 14:00|14:00 - 14:45|14:45 - 16:00|16:00 - 16:50|16:50 - 19:00' | split: '|'
+    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Scenic countryside drive|Welcome and northern clothing|Meet, feed and observe the elephants|River time and wellbeing check|Local meal and return to Chiang Mai' | split: '|'
+    assign itinerary_details = 'Meet your driver at your accommodation and begin a relaxed afternoon sanctuary visit.|Travel approximately 1.5 hours through mountain, river and farming scenery outside Chiang Mai.|Arrive for an introduction, safety briefing and a change into traditional northern clothing.|Feed and interact with the elephants while learning about their histories and behavior in a natural habitat.|Walk toward the river for elephant-led water time, followed by a gentle health check. Elephants are never forced into the water.|Enjoy a local meal, say goodbye to the herd and return to Chiang Mai at approximately 19:00.' | split: '|'
+    assign itinerary_images = 'elehub-selected-006.jpg|elehub-selected-051.jpg|elehub-selected-003.jpg|elehub-selected-015.jpg|elehub-selected-020.jpg|elehub-selected-016.jpg' | split: '|'
+  elsif product.handle == 'living-green-chiang-mai-full-day-pad-thai-cooking'
+    assign itinerary_times = '08:00 - 08:30|08:30 - 10:45|10:45 - 12:00|12:00 - 13:00|13:00 - 15:30|15:30 - 17:00' | split: '|'
+    assign itinerary_titles = 'Hotel pickup and countryside drive|Welcome and northern clothing|Meet, feed and observe the elephants|Cook your own vegetarian Pad Thai|Herbal medicine, seedlings and river time|Change clothes and return to Chiang Mai' | split: '|'
+    assign itinerary_details = 'Leave Chiang Mai and enjoy approximately 1.5 hours of rural mountain, river and farming scenery.|Arrive at the sanctuary for an introduction, safety briefing and traditional northern clothing.|Spend time feeding, interacting and walking through the tropical forest while learning about elephant behavior.|Join a hands-on Pad Thai workshop, balance the classic Thai flavors and enjoy your own creation for lunch.|Make herbal medicine balls, plant future elephant food and join optional elephant-led river time before saying goodbye.|Ride approximately 1.5 hours back to Chiang Mai with an expected arrival around 17:00.' | split: '|'
+    assign itinerary_images = 'elehub-selected-003.jpg|elehub-selected-006.jpg|elehub-selected-015.jpg|elehub-selected-011.jpg|elehub-selected-020.jpg|elehub-selected-016.jpg' | split: '|'
+  elsif product.handle == 'living-green-chiang-mai-elephants-bamboo-rafting-cooking'
+    assign itinerary_times = '08:00 - 08:30|08:30 - 10:45|10:45 - 12:00|12:00 - 13:00|13:15 - 14:15|14:30 - 17:00' | split: '|'
+    assign itinerary_titles = 'Hotel pickup and countryside drive|Welcome and northern clothing|Meet, feed and observe the elephants|Vegetarian Pad Thai cooking workshop|Bamboo rafting on the Wang River|River time, fresh clothes and return' | split: '|'
+    assign itinerary_details = 'Leave Chiang Mai for a scenic drive through rivers, fields and banana plantations.|Arrive for an introduction, safety briefing and traditional northern clothing.|Feed the elephants, learn their stories and walk with them through their tropical forest habitat.|Cook authentic vegetarian Pad Thai with local guidance, then enjoy the lunch you prepared.|Travel to the rafting point and drift along the peaceful Wang River with a river guide.|Return to the sanctuary for optional elephant-led water time, change clothes and travel back to Chiang Mai.' | split: '|'
+    assign itinerary_images = 'elehub-selected-003.jpg|elehub-selected-006.jpg|elehub-selected-015.jpg|elehub-selected-011.jpg|elehub-selected-029.jpg|elehub-selected-020.jpg' | split: '|'
+  elsif product.handle == 'living-green-chiang-mai-elephants-doi-inthanon-trek'
+    assign itinerary_times = '07:00|Morning|Late morning|Afternoon|Late afternoon|Evening' | split: '|'
+    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Elephant sanctuary experience|Travel toward Doi Inthanon|Twin Pagodas and botanical garden|Pha Dok Siew trail and waterfall|Karen coffee farm and return' | split: '|'
+    assign itinerary_details = 'Start early for a full day combining elephant care and the cool landscapes of Doi Inthanon National Park.|Feed, observe and learn about the elephants in their sanctuary habitat before continuing into the mountains.|Travel toward Thailand&#39;s highest peak with park entry included in your experience.|Visit the Twin Pagodas and botanical garden while enjoying the mountain atmosphere.|Walk the Pha Dok Siew trail through rice terraces and forest scenery, with a refreshing waterfall stop.|Visit a Karen coffee farm, then return to Chiang Mai after an active day in nature.' | split: '|'
+    assign itinerary_images = 'elehub-selected-051.jpg|elehub-selected-015.jpg|elehub-selected-032.jpg|elehub-selected-030.jpg|elehub-selected-082.jpg|elehub-selected-016.jpg' | split: '|'
+  elsif product.handle == 'casa-de-mango-cooking-ethical-elephant-sanctuary'
+    assign itinerary_times = '07:30|Morning|Late morning|Midday|Afternoon|Evening' | split: '|'
+    assign itinerary_titles = 'Hotel pickup and local market visit|Arrive at Casa de Mango organic farm|Cook a five-course Thai menu|Enjoy your freshly prepared meal|Ethical elephant sanctuary visit|Return to Chiang Mai' | split: '|'
+    assign itinerary_details = 'Begin with hotel pickup and a local market stop to discover the ingredients behind northern Thai cooking.|Continue to the organic farm, meet your host and prepare for a small-group culinary session.|Make spring rolls, Tom Yum or curry, a stir-fry, Pad Thai and dessert with step-by-step guidance.|Sit down to enjoy the dishes you cooked before the second half of the experience begins.|Spend the afternoon feeding, observing and learning about elephants in a respectful sanctuary setting.|Travel back to Chiang Mai after a full day of food, culture and elephant care.' | split: '|'
+    assign itinerary_images = 'elehub-selected-054.jpg|elehub-selected-011.jpg|elehub-selected-016.jpg|elehub-selected-011.jpg|elehub-selected-015.jpg|elehub-selected-051.jpg' | split: '|'
+  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-morning'
+    assign itinerary_times = '07:00 - 07:30|09:30|Morning|12:00|12:30|13:00 - 14:00' | split: '|'
+    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Arrive and learn the no-control philosophy|Food, vitamins and habitat care|Authentic Pad Thai cooking workshop|Enjoy your lunch|Say goodbye and return to Chiang Mai' | split: '|'
+    assign itinerary_details = 'Travel from your hotel in air-conditioned transport through the Chiang Mai countryside.|Join an elephant education briefing before preparing food and beginning the observation experience.|Prepare fruit, observe ethical feeding, make herbal vitamin balls, harvest elephant grass and plant banana trees.|Learn to cook Pad Thai with local guidance and a traditional family recipe.|Enjoy the Pad Thai you prepared alongside other local Thai dishes.|Offer the vitamin balls, say farewell to the herd and arrive back at your hotel at approximately 14:00.' | split: '|'
+    assign itinerary_images = 'elehub-selected-092.jpg|elehub-selected-086.jpg|elehub-selected-085.jpg|elehub-selected-011.jpg|elehub-selected-016.jpg|elehub-selected-090.jpg' | split: '|'
+  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-afternoon'
+    assign itinerary_times = '11:30 - 12:00|13:30|Afternoon|Afternoon|17:30|18:30' | split: '|'
+    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Arrive and learn the no-control philosophy|Food, vitamins and habitat care|Authentic Pad Thai cooking workshop|Say goodbye and return to Chiang Mai|Arrive at your hotel' | split: '|'
+    assign itinerary_details = 'Travel from your hotel in air-conditioned transport through the Chiang Mai countryside.|Join an elephant education briefing before preparing food and beginning the observation experience.|Prepare fruit, observe ethical feeding, make herbal vitamin balls, harvest elephant grass and plant banana trees.|Learn to cook Pad Thai with local guidance, then enjoy your creation with other local Thai dishes.|Offer the handmade vitamin balls, say farewell to the herd and begin the return journey.|Arrive back at your Chiang Mai accommodation at approximately 18:30.' | split: '|'
+    assign itinerary_images = 'elehub-selected-092.jpg|elehub-selected-086.jpg|elehub-selected-085.jpg|elehub-selected-011.jpg|elehub-selected-090.jpg|elehub-selected-016.jpg' | split: '|'
+  elsif product.handle == 'big-boy-chiang-mai-full-day-elephants-rafting-waterfall'
+    assign itinerary_times = '07:30 - 08:00|09:30|12:00 - 13:00|13:30|14:30|15:30 - 17:00' | split: '|'
+    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Elephant observation and habitat care|Pad Thai cooking workshop and lunch|Mae Wang waterfall|Bamboo rafting on the Mae Wang River|Return to Chiang Mai' | split: '|'
+    assign itinerary_details = 'Travel from your hotel in air-conditioned transport through the Chiang Mai countryside.|Learn the no-control philosophy, prepare food, observe feeding, make vitamin balls and help with habitat enrichment.|Cook authentic Pad Thai, enjoy your lunch and say farewell to the elephants before continuing downstream.|Swim in the waterfall pools or relax on the banks during a refreshing jungle stop.|Drift along the Mae Wang River on a guided bamboo raft surrounded by green riverbanks.|Begin the return journey and arrive at your Chiang Mai hotel at approximately 17:00.' | split: '|'
+    assign itinerary_images = 'elehub-selected-092.jpg|elehub-selected-085.jpg|elehub-selected-011.jpg|elehub-selected-082.jpg|elehub-selected-029.jpg|elehub-selected-090.jpg' | split: '|'
+  elsif product.handle == 'chonburi-ethical-half-day-morning-bangkok-departure'
+    assign itinerary_times = '07:00 - 08:00|09:30|Morning|Late morning|12:00|13:00' | split: '|'
+    assign itinerary_titles = 'Bangkok hotel pickup|Arrive and change into a Mo Hom shirt|Elephant briefing and feeding|Nature walk to the panoramic hilltop|Ancient Pad Thai lunch|Depart the sanctuary' | split: '|'
+    assign itinerary_details = 'Meet your driver within the designated Bangkok transfer zones for the journey to Chonburi.|Receive a traditional Mo Hom shirt and an introduction to the sanctuary before meeting the herd.|Prepare food, feed the elephants and learn about their behavior from your guide.|Walk through nature and trek with the elephants toward a 180-degree panoramic viewpoint.|Relax over an Ancient Pad Thai lunch after your sanctuary activities.|Leave Chonburi for your return transfer to Bangkok.' | split: '|'
+    assign itinerary_images = 'elehub-selected-057.jpg|elehub-selected-054.jpg|elehub-selected-062.jpg|elehub-selected-073.jpg|elehub-selected-016.jpg|elehub-selected-057.jpg' | split: '|'
+  elsif product.handle == 'chonburi-ethical-half-day-afternoon-bangkok-departure'
+    assign itinerary_times = '11:00 - 12:00|13:30|Afternoon|Late afternoon|17:00|Approx. 19:00' | split: '|'
+    assign itinerary_titles = 'Bangkok hotel pickup|Arrive at the Chonburi sanctuary|Feeding and natural foraging walk|Hidden hilltop and elephant-led water time|Depart the sanctuary|Arrive back in Bangkok' | split: '|'
+    assign itinerary_details = 'Meet your driver within the designated Bangkok transfer zones for the journey to Chonburi.|Settle in, meet your guide and begin a relaxed afternoon experience with the elephants.|Feed the herd and observe the elephants foraging naturally as you learn about their lives.|Trek toward a hidden panoramic viewpoint, then enjoy water play only when the elephants choose to participate.|Say goodbye to the sanctuary and begin the return transfer.|Reach Bangkok at approximately 19:00, depending on traffic and your drop-off location.' | split: '|'
+    assign itinerary_images = 'elehub-selected-057.jpg|elehub-selected-054.jpg|elehub-selected-062.jpg|elehub-selected-073.jpg|elehub-selected-020.jpg|elehub-selected-057.jpg' | split: '|'
+  elsif product.handle == 'chonburi-ethical-half-day-morning-pattaya-departure'
+    assign itinerary_times = '07:45 - 08:45|After arrival|Morning|Late morning|12:00|13:00' | split: '|'
+    assign itinerary_titles = 'Pattaya hotel pickup|Mo Hom shirt and elephant briefing|Feeding and nature walk|Panoramic viewpoint and water time|Ancient Pad Thai lunch|Depart for Pattaya' | split: '|'
+    assign itinerary_details = 'Meet your driver in Pattaya for the approximately 40-minute transfer to the Chonburi sanctuary.|Change into a traditional Mo Hom shirt, meet your guide and learn how the sanctuary cares for its herd.|Prepare food, feed the elephants and walk through their green habitat.|Continue toward a 180-degree panoramic viewpoint, with optional elephant-led water time.|Enjoy an Ancient Pad Thai meal before saying goodbye to the elephants.|Return to Pattaya after the morning sanctuary experience.' | split: '|'
+    assign itinerary_images = 'elehub-selected-083.jpg|elehub-selected-054.jpg|elehub-selected-062.jpg|elehub-selected-073.jpg|elehub-selected-016.jpg|elehub-selected-083.jpg' | split: '|'
+  elsif product.handle == 'chonburi-ethical-half-day-afternoon-pattaya-departure'
+    assign itinerary_times = '11:45 - 12:45|After arrival|Afternoon|Late afternoon|17:00|Approx. 17:40' | split: '|'
+    assign itinerary_titles = 'Pattaya hotel pickup|Arrive at the Chonburi sanctuary|Feeding and natural foraging walk|Hidden hilltop and elephant-led water time|Depart the sanctuary|Arrive back in Pattaya' | split: '|'
+    assign itinerary_details = 'Enjoy your morning in Pattaya, then meet your driver for the approximately 40-minute transfer.|Settle in, meet your guide and begin a relaxed afternoon sanctuary visit.|Feed the herd and observe the elephants foraging naturally as you learn about their lives.|Walk toward a hidden panoramic viewpoint and join water play only when the elephants choose to participate.|Say goodbye to the elephants and begin your return transfer.|Reach Pattaya at approximately 17:40, depending on traffic and your hotel location.' | split: '|'
+    assign itinerary_images = 'elehub-selected-083.jpg|elehub-selected-054.jpg|elehub-selected-062.jpg|elehub-selected-073.jpg|elehub-selected-020.jpg|elehub-selected-083.jpg' | split: '|'
+  endif
+
+  assign product_form_id = 'product-form-' | append: section.id
+-%}
+
+<style>
+  .shopify-section-group-header-group,
+  .shopify-section-group-footer-group { display: none !important; }
+  .sym-tour {
+    --ink:#1d241d; --muted:#667064; --line:#e2e7df; --paper:#fbfcf9;
+    --mist:#f1f5ef; --green:#244c2c; --deep:#183820; --gold:#a88349;
+    background:var(--paper); color:var(--ink); font-family:Georgia, "Times New Roman", Times, serif; line-height:1.6;
+  }
+  .sym-tour * { box-sizing:border-box; }
+  .sym-tour img { display:block; width:100%; height:100%; object-fit:cover; object-position:center center; }
+  .sym-tour a { color:inherit; text-decoration:none; }
+  .sym-mobile-bookbar { display:none; }
+  .sym-wrap { width:min(1240px, calc(100% - 40px)); margin:0 auto; }
+  .sym-nav { position:sticky; top:0; z-index:30; border-bottom:1px solid rgba(36,76,44,.1); background:rgba(251,252,249,.92); backdrop-filter:blur(16px); }
+  .sym-nav__inner { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .sym-brand { color:var(--green); font-size:15px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+  .sym-nav__links { display:flex; gap:22px; color:var(--muted); font-size:13px; font-weight:700; }
+  .sym-hero { padding:34px 0 72px; }
+  .sym-hero__grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(360px,.68fr); gap:34px; align-items:start; }
+  .sym-stack { display:grid; gap:18px; }
+  .sym-stack__image { position:relative; aspect-ratio:4/3; overflow:hidden; border-radius:18px; background:#dce5da; }
+  .sym-stack__image:first-child { aspect-ratio:4/3; }
+  .sym-stack__image img { transition:transform .5s ease; }
+  .sym-stack__image:hover img { transform:scale(1.025); }
+  .sym-stack__label { position:absolute; left:18px; bottom:18px; padding:8px 12px; border-radius:999px; background:rgba(15,30,18,.72); color:#fff; font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; backdrop-filter:blur(12px); }
+  .sym-book { position:sticky; top:92px; padding:26px; border:1px solid var(--line); border-radius:18px; background:#fff; box-shadow:0 22px 60px rgba(31,53,31,.1); }
+  .sym-eyebrow { color:var(--gold); font-size:11px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+  .sym-title { margin:9px 0 0; color:var(--deep); font-size:clamp(32px,4vw,50px); font-weight:500; letter-spacing:-.04em; line-height:1.02; }
+  .sym-subline { margin:14px 0 0; color:var(--muted); font-size:14px; }
+  .sym-price { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:22px 0 18px; padding:16px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .sym-price span { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+  .sym-price strong { color:var(--green); font-size:28px; }
+  .sym-fields { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .sym-field--wide { grid-column:1 / -1; }
+  .sym-field { display:grid; gap:5px; }
+  .sym-field label { color:var(--muted); font-size:10px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+  .sym-field input, .sym-field select { width:100%; min-height:48px; padding:0 11px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--ink); font:inherit; font-size:13px; }
+  .sym-variant-list { display:grid; gap:8px; margin-top:16px; }
+  .sym-variant { position:relative; }
+  .sym-variant input { position:absolute; opacity:0; }
+  .sym-variant span { display:flex; justify-content:space-between; gap:12px; padding:11px 12px; border:1px solid var(--line); border-radius:10px; color:var(--muted); cursor:pointer; font-size:13px; font-weight:700; }
+  .sym-variant input:checked + span { border-color:var(--green); background:#f2f7f0; color:var(--green); }
+  .sym-pay { margin-top:16px; }
+  .sym-pay .shopify-payment-button__button { min-height:60px !important; border-radius:10px !important; background:var(--deep) !important; color:#fff !important; font-size:14px !important; font-weight:900 !important; letter-spacing:.12em !important; text-transform:uppercase !important; box-shadow:0 14px 28px rgba(24,56,32,.2); }
+  .sym-pay .shopify-payment-button__more-options { color:var(--green) !important; font-size:12px !important; }
+  .sym-trust { display:grid; gap:9px; margin-top:18px; padding-top:16px; border-top:1px solid var(--line); color:#4d5b4d; font-size:12px; font-weight:700; }
+  .sym-trust span { display:flex; gap:8px; align-items:flex-start; }
+  .sym-trust b { color:var(--green); }
+  .sym-note { margin:14px 0 0; color:var(--muted); font-size:11px; text-align:center; }
+  .sym-transfer-link { display:flex; align-items:center; justify-content:center; min-height:48px; margin-top:16px; border:1px solid var(--green); border-radius:10px; color:var(--green) !important; font-size:11px; font-weight:900; letter-spacing:.1em; text-decoration:none; text-transform:uppercase; }
+  .sym-transfer-link:hover { background:#f2f7f0; }
+  .sym-hotel-help { display:flex; justify-content:space-between; gap:10px; align-items:center; margin-top:8px; }
+  .sym-hotel-help button { padding:0; border:0; background:none; color:var(--green); cursor:pointer; font-family:inherit; font-size:12px; font-weight:800; text-decoration:underline; text-underline-offset:3px; }
+  .sym-hotel-status { margin:9px 0 0; color:var(--muted); font-size:11px; line-height:1.45; }
+  .sym-field textarea { width:100%; min-height:82px; padding:11px; border:1px solid var(--line); border-radius:10px; resize:vertical; background:#fff; color:var(--ink); font:inherit; font-size:13px; }
+  .sym-fast-note { margin:0 0 14px; padding:10px 12px; border-radius:10px; background:#f2f7f0; color:var(--green); font-size:12px; font-weight:800; line-height:1.45; }
+  .sym-optional { grid-column:1 / -1; border:1px solid var(--line); border-radius:10px; background:#fff; }
+  .sym-optional summary { min-height:46px; display:flex; align-items:center; justify-content:space-between; padding:0 11px; cursor:pointer; color:var(--green); font-size:11px; font-weight:900; letter-spacing:.08em; list-style:none; text-transform:uppercase; }
+  .sym-optional summary::-webkit-details-marker { display:none; }
+  .sym-optional summary::after { content:"+"; font-size:20px; font-weight:500; }
+  .sym-optional[open] summary::after { content:"−"; }
+  .sym-optional .sym-field { padding:0 11px 11px; }
+  .sym-pickup-options { display:grid; gap:8px; }
+  .sym-pickup-option { position:relative; }
+  .sym-pickup-option input { position:absolute; opacity:0; }
+  .sym-pickup-option span { display:block; padding:11px 12px; border:1px solid var(--line); border-radius:10px; color:var(--muted); cursor:pointer; font-size:12px; font-weight:700; line-height:1.4; }
+  .sym-pickup-option input:checked + span { border-color:var(--green); background:#f2f7f0; color:var(--green); }
+  .sym-pickup-option strong { display:block; margin-bottom:2px; color:var(--deep); font-size:13px; }
+  .sym-hotel-field[hidden] { display:none; }
+  .sym-booking-summary { margin-top:14px; padding:0 14px; border:1px solid var(--line); border-radius:10px; background:#f5f8f3; }
+  .sym-booking-summary summary { min-height:46px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; color:var(--gold); font-size:10px; font-weight:900; letter-spacing:.12em; list-style:none; text-transform:uppercase; }
+  .sym-booking-summary summary::-webkit-details-marker { display:none; }
+  .sym-booking-summary summary::after { content:"+"; color:var(--green); font-size:18px; font-weight:500; }
+  .sym-booking-summary[open] summary::after { content:"−"; }
+  .sym-booking-summary__title { color:var(--gold); font-size:10px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+  .sym-booking-summary dl { display:grid; grid-template-columns:72px minmax(0,1fr); gap:5px 9px; margin:0; padding:0 0 14px; color:var(--muted); font-size:12px; line-height:1.35; }
+  .sym-booking-summary dt { color:var(--green); font-weight:800; }
+  .sym-booking-summary dd { margin:0; }
+  .sym-review-button { width:100%; min-height:48px; margin-top:14px; border:1px solid var(--green); border-radius:10px; background:#fff; color:var(--green); cursor:pointer; font-family:inherit; font-size:12px; font-weight:900; letter-spacing:.09em; text-transform:uppercase; }
+  .sym-review-status { margin:9px 0 0; color:var(--muted); font-size:11px; line-height:1.45; text-align:center; }
+  .sym-review-status[data-ready="true"] { color:var(--green); font-weight:800; }
+  .sym-section { padding:84px 0; }
+  .sym-section--soft { background:var(--mist); }
+  .sym-intro { max-width:700px; margin:0 auto 44px; text-align:center; }
+  .sym-kicker { color:var(--gold); font-size:11px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+  .sym-heading { margin:8px 0 0; color:var(--deep); font-size:clamp(36px,5vw,62px); font-weight:500; letter-spacing:-.05em; line-height:1.02; }
+  .sym-intro p { margin:16px 0 0; color:var(--muted); font-size:16px; }
+  .sym-highlights { display:grid; gap:30px; }
+  .sym-highlight { display:grid; grid-template-columns:1fr 1fr; min-height:420px; overflow:hidden; border:1px solid var(--line); border-radius:18px; background:#fff; }
+  .sym-highlight:nth-child(even) .sym-highlight__media { order:2; }
+  .sym-highlight__copy { display:flex; flex-direction:column; justify-content:center; padding:clamp(28px,5vw,64px); }
+  .sym-highlight__number { color:var(--gold); font-size:12px; font-weight:900; letter-spacing:.14em; }
+  .sym-highlight h3 { margin:10px 0 0; font-size:clamp(34px,4vw,52px); font-weight:500; letter-spacing:-.05em; line-height:1; }
+  .sym-highlight p { margin:18px 0 0; color:var(--muted); font-size:16px; }
+  .sym-itinerary { display:grid; max-width:1040px; margin:0 auto; gap:15px; }
+  .sym-itinerary__item { display:grid; grid-template-columns:145px minmax(0,1fr) 235px; min-height:178px; overflow:hidden; border:1px solid var(--line); border-radius:16px; background:#fff; }
+  .sym-itinerary__time { display:flex; align-items:center; justify-content:center; padding:20px; border-right:1px solid var(--line); color:var(--green); font-size:14px; font-weight:800; line-height:1.25; text-align:center; }
+  .sym-itinerary__copy { display:flex; flex-direction:column; justify-content:center; padding:24px 26px; }
+  .sym-itinerary__copy h3 { margin:0; color:var(--deep); font-size:26px; font-weight:600; letter-spacing:-.025em; line-height:1.05; }
+  .sym-itinerary__copy p { margin:10px 0 0; color:var(--muted); font-size:14px; }
+  .sym-itinerary__media { min-height:178px; }
+  .sym-itinerary__note { max-width:820px; margin:24px auto 0; color:var(--muted); font-size:13px; text-align:center; }
+  .sym-pickup { max-width:900px; margin:0 auto; overflow:hidden; border:1px solid var(--line); border-radius:18px; background:#fff; }
+  .sym-pickup__copy { padding:clamp(28px,5vw,54px); }
+  .sym-pickup__copy h3 { margin:8px 0 0; color:var(--deep); font-size:clamp(32px,4vw,48px); font-weight:600; letter-spacing:-.04em; line-height:1.02; }
+  .sym-pickup__copy p { margin:14px 0 0; color:var(--muted); font-size:15px; }
+  .sym-pickup__zones { display:grid; gap:10px; margin:22px 0 0; }
+  .sym-pickup__zone { padding:13px 14px; border:1px solid var(--line); border-radius:12px; background:var(--paper); color:var(--muted); font-size:13px; line-height:1.45; }
+  .sym-pickup__zone strong { display:block; margin-bottom:3px; color:var(--green); }
+  .sym-pickup__search { display:inline-flex; align-items:center; justify-content:center; min-height:48px; margin-top:20px; padding:0 18px; border-radius:10px; background:var(--deep); color:#fff !important; font-size:12px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+  .sym-pickup__fine { margin-top:14px !important; font-size:12px !important; }
+  .sym-extras { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .sym-extra { overflow:hidden; border:1px solid var(--line); border-radius:16px; background:#fff; }
+  .sym-extra img { height:210px; }
+  .sym-extra__copy { padding:20px; }
+  .sym-extra h3 { margin:0; font-size:25px; font-weight:500; letter-spacing:-.03em; line-height:1.05; }
+  .sym-extra p { margin:11px 0 0; color:var(--muted); font-size:14px; }
+  .sym-faq { display:grid; max-width:900px; margin:0 auto; border-top:1px solid var(--line); }
+  .sym-faq details { border-bottom:1px solid var(--line); }
+  .sym-faq summary { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:66px; cursor:pointer; color:var(--ink); font-size:15px; font-weight:800; list-style:none; }
+  .sym-faq summary::-webkit-details-marker { display:none; }
+  .sym-faq summary::after { content:"+"; color:var(--green); font-size:22px; }
+  .sym-faq details[open] summary::after { content:"−"; }
+  .sym-faq p { margin:0; padding:0 0 20px; color:var(--muted); font-size:14px; }
+  .sym-footer { padding:34px 0; background:var(--deep); color:rgba(255,255,255,.72); font-size:13px; }
+  .sym-footer strong { color:#fff; }
+  @media (max-width:900px) {
+    .sym-tour { padding-bottom:72px; }
+    .sym-hero__grid { grid-template-columns:1fr; }
+    .sym-stack { display:flex; gap:12px; overflow:auto; scroll-snap-type:x mandatory; }
+    .sym-stack__image, .sym-stack__image:first-child { flex:0 0 86%; height:auto; aspect-ratio:4/3; scroll-snap-align:start; }
+    .sym-book { position:static; order:-1; }
+    .sym-mobile-bookbar { position:fixed; right:0; bottom:0; left:0; z-index:90; display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px; padding:10px 14px; background:rgba(24,56,32,.97); color:#fff; box-shadow:0 -8px 24px rgba(0,0,0,.18); }
+    .sym-mobile-bookbar span { font-size:11px; font-weight:800; line-height:1.35; }
+    .sym-mobile-bookbar a { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 15px; border-radius:8px; background:#fff; color:var(--deep) !important; font-size:11px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+    .sym-highlight { grid-template-columns:1fr; }
+    .sym-highlight:nth-child(even) .sym-highlight__media { order:0; }
+    .sym-highlight__media { min-height:300px; }
+    .sym-itinerary__item { grid-template-columns:125px minmax(0,1fr) 190px; }
+    .sym-extras { grid-template-columns:1fr; }
+  }
+  @media (max-width:560px) {
+    .sym-wrap { width:min(100% - 22px,1240px); }
+    .sym-nav__links { display:none; }
+    .sym-hero { padding:16px 0 46px; }
+    .sym-stack__image, .sym-stack__image:first-child { height:auto; aspect-ratio:4/3; border-radius:14px; }
+    .sym-book { padding:19px; border-radius:14px; }
+    .sym-fields { grid-template-columns:1fr; }
+    .sym-field input, .sym-field select, .sym-field textarea { font-size:16px; }
+    .sym-title { font-size:38px; }
+    .sym-price { margin:16px 0 14px; padding:13px 0; }
+    .sym-hotel-status { font-size:12px; }
+    .sym-stack { margin-top:4px; }
+    .sym-section { padding:58px 0; }
+    .sym-highlight { min-height:0; border-radius:14px; }
+    .sym-highlight__media { min-height:240px; }
+    .sym-highlight__copy { padding:24px; }
+    .sym-itinerary__item { grid-template-columns:1fr; }
+    .sym-itinerary__time { justify-content:flex-start; padding:15px 18px 10px; border-right:0; color:var(--gold); text-align:left; }
+    .sym-itinerary__copy { padding:0 18px 17px; }
+    .sym-itinerary__copy h3 { font-size:24px; }
+    .sym-itinerary__media { order:-1; min-height:0; aspect-ratio:4/3; }
+  }
+</style>
+
+{% render 'elehub-editorial-header' %}
+
+<div class="sym-tour">
+  <div class="sym-mobile-bookbar"><span>Ready to reserve your elephant experience?</span><a href="#book">Book This Tour</a></div>
+  <main>
+    <section class="sym-hero">
+      <div class="sym-wrap sym-hero__grid">
+        <div class="sym-stack" aria-label="Tour photo gallery">
+          <figure class="sym-stack__image"><img src="{{ hero_image | asset_url }}" alt="{{ display_title | escape }} elephant sanctuary landscape" width="1000" height="1200" loading="eager"><figcaption class="sym-stack__label">A sanctuary, not a show</figcaption></figure>
+          <figure class="sym-stack__image"><img src="{{ feeding_image | asset_url }}" alt="{{ display_title | escape }} ethical elephant encounter" width="1000" height="900" loading="lazy"><figcaption class="sym-stack__label">Gentle encounters</figcaption></figure>
+          <figure class="sym-stack__image"><img src="{{ walking_image | asset_url }}" alt="{{ display_title | escape }} natural forest habitat" width="1000" height="900" loading="lazy"><figcaption class="sym-stack__label">Freedom in nature</figcaption></figure>
+          <figure class="sym-stack__image"><img src="{{ water_image | asset_url }}" alt="{{ display_title | escape }} river or jungle activity" width="1000" height="900" loading="lazy"><figcaption class="sym-stack__label">A day to remember</figcaption></figure>
+        </div>
+
+        <aside class="sym-book" id="book" aria-label="Quick booking">
+          <div class="sym-eyebrow">Book direct · Official foundation rate</div>
+          <h1 class="sym-title">{{ display_title | escape }}</h1>
+          <p class="sym-subline">{{ location_label }} · {{ duration_label }} · No riding · No shows</p>
+          <div class="sym-price"><span>From</span><strong>{{ product.selected_or_first_available_variant.price | money }}</strong></div>
+          <p class="sym-fast-note">1-minute booking: add your contact, tour date and pickup details, then continue to secure payment.</p>
+
+          {%- form 'product', product, id: product_form_id -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="SymVariant-{{ section.id }}">
+            <input type="hidden" name="properties[Selected tour]" value="{{ display_title | escape }}">
+            <input type="hidden" name="properties[Pickup window]" value="{{ pickup_window }}">
+            <div class="sym-fields">
+              <div class="sym-field sym-field--wide"><label for="SymName-{{ section.id }}">Guest name</label><input id="SymName-{{ section.id }}" type="text" name="properties[Guest name]" autocomplete="name" required></div>
+              <div class="sym-field sym-field--wide"><label for="SymDate-{{ section.id }}">Tour date</label><input id="SymDate-{{ section.id }}" type="date" name="properties[Tour date]" required></div>
+              <div class="sym-field"><label for="SymPhone-{{ section.id }}">Phone number</label><input id="SymPhone-{{ section.id }}" type="tel" name="properties[Phone number]" autocomplete="tel" required></div>
+              <div class="sym-field"><label for="SymEmail-{{ section.id }}">Email</label><input id="SymEmail-{{ section.id }}" type="email" name="properties[Email]" autocomplete="email" required></div>
+              {% if has_bangkok_meeting_point %}
+                <div class="sym-field sym-field--wide"><label>Pickup option</label><div class="sym-pickup-options"><label class="sym-pickup-option"><input type="radio" name="properties[Pickup option]" value="Bangkok hotel pickup" data-sym-pickup-option="hotel" checked><span><strong>Bangkok hotel pickup</strong>Enter your hotel or accommodation address for transfer confirmation.</span></label><label class="sym-pickup-option"><input type="radio" name="properties[Pickup option]" value="Meet at Ekkamai Bus Terminal" data-sym-pickup-option="meeting"><span><strong>Meet at Ekkamai Bus Terminal</strong>Sukhumvit Road 928, Bangkok 10110. No hotel address is required.</span></label></div></div>
+              {% endif %}
+              <div class="sym-field sym-field--wide sym-hotel-field" id="SymHotelField-{{ section.id }}">
+                <label for="SymHotel-{{ section.id }}">Pickup hotel or address in {{ pickup_region }}</label>
+                <input id="SymHotel-{{ section.id }}" type="text" name="properties[Pickup hotel or address]" list="SymHotels-{{ section.id }}" autocomplete="off" placeholder="Start typing a hotel name or enter an address" aria-describedby="SymHotelHelp-{{ section.id }}" required>
+                <datalist id="SymHotels-{{ section.id }}">
+                  {% render 'elephant-hotel-options', pickup_region: pickup_region %}
+                </datalist>
+                <p class="sym-hotel-status" id="SymHotelHelp-{{ section.id }}">Start typing to choose a common hotel. If your hotel is not listed, enter the full address for your Airbnb, villa or accommodation. Our team will contact you directly if we need to confirm the transfer arrangement.</p>
+              </div>
+              <div class="sym-field"><label for="SymAdults-{{ section.id }}">Adults</label><input id="SymAdults-{{ section.id }}" type="number" min="1" value="1" name="properties[Adults]"></div>
+              <div class="sym-field"><label for="SymChildren-{{ section.id }}">Children</label><input id="SymChildren-{{ section.id }}" type="number" min="0" value="0" name="properties[Children]"></div>
+              <details class="sym-optional"><summary>Add an optional note</summary><div class="sym-field"><label for="SymRequests-{{ section.id }}">Special requests or pickup notes</label><textarea id="SymRequests-{{ section.id }}" name="properties[Special requests or pickup notes]" placeholder="Optional: Airbnb address, villa details, dietary requests or anything our team should know"></textarea></div></details>
+            </div>
+            <details class="sym-booking-summary" aria-live="polite"><summary>Review booking summary</summary><dl><dt>Tour</dt><dd>{{ display_title | escape }}</dd><dt>Guest</dt><dd id="SymSummaryName-{{ section.id }}">Add your name</dd><dt>Date</dt><dd id="SymSummaryDate-{{ section.id }}">Choose a tour date</dd><dt>Pickup</dt><dd>{{ pickup_window }} · {{ pickup_region }}</dd><dt>Location</dt><dd id="SymSummaryHotel-{{ section.id }}">Add your hotel or address</dd></dl></details>
+            {%- if product.variants.size > 1 -%}
+              <div class="sym-variant-list" aria-label="Ticket options">
+                {%- for variant in product.variants -%}
+                  <label class="sym-variant"><input type="radio" name="sym_variant_{{ section.id }}" value="{{ variant.id }}" {% if variant.id == product.selected_or_first_available_variant.id %}checked{% endif %}><span><b>{{ variant.title }}</b><b>{{ variant.price | money }}</b></span></label>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            <div class="sym-pay">{{ form | payment_button }}</div>
+          {%- endform -%}
+
+          <div class="sym-trust">
+            <span><b>✓</b> Official Foundation Rate (No Middleman)</span>
+            <span><b>✓</b> TripAdvisor Travelers' Choice Top 10 Winners</span>
+            <span><b>✓</b> 100% Ethical & Responsible (Strictly No Riding)</span>
+          </div>
+          <a class="sym-transfer-link" href="#pickup-zone">View {{ pickup_region }} Hotel Pickup Area ↓</a>
+          <p class="sym-note">Secure accelerated checkout. Apple Pay and express payment options appear when available on your device.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sym-section sym-section--soft" id="experience">
+      <div class="sym-wrap">
+        <div class="sym-intro"><div class="sym-kicker">The Experience</div><h2 class="sym-heading">Three moments. One unforgettable day.</h2><p>Forget a crowded checklist. Slow down, enter their world, and experience the sanctuary through its most meaningful moments.</p></div>
+        <div class="sym-highlights">
+          <article class="sym-highlight"><div class="sym-highlight__media"><img src="{{ feeding_image | asset_url }}" alt="Guests preparing food for rescued elephants" width="800" height="620" loading="lazy"></div><div class="sym-highlight__copy"><div class="sym-highlight__number">01 · A gentle introduction</div><h3>Greet Them with Love.</h3><p>Change into a traditional northern shirt, prepare nourishing food and herbal treats, then watch these rescued giants softly curl their trunks around a gift from your palm. There are no hooks and no punishments here.</p></div></article>
+          <article class="sym-highlight"><div class="sym-highlight__media"><img src="{{ walking_image | asset_url }}" alt="Elephants freely walking through natural Thai forest" width="800" height="620" loading="lazy"></div><div class="sym-highlight__copy"><div class="sym-highlight__number">02 · Natural observation</div><h3>Walk Their Way.</h3><p>No riding. No commands. Follow their rhythm into a natural forest habitat and observe their real character, freedom and quiet intelligence.{% if is_big_boy %} Thaielehub is a zero-control observation sanctuary designed for respectful wildlife photography.{% endif %}</p></div></article>
+          <article class="sym-highlight"><div class="sym-highlight__media"><img src="{{ water_image | asset_url }}" alt="Refreshing river or waterfall experience in Thailand" width="800" height="620" loading="lazy"></div><div class="sym-highlight__copy"><div class="sym-highlight__number">03 · Refreshing adventure</div><h3>Splashes of Joy.</h3><p>Join the elephants near the water only when they choose to play.{% if has_rafting %} Your signature experience continues with a peaceful bamboo rafting trip along the Wang River.{% elsif has_trek %} Your expedition continues beneath a hidden jungle waterfall.{% else %} Their comfort always comes first, making every moment honest and unforced.{% endif %}</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sym-section" id="included">
+      <div class="sym-wrap">
+        <div class="sym-intro"><div class="sym-kicker">Thoughtfully Included</div><h2 class="sym-heading">More depth, less planning.</h2><p>Everything essential is prepared before you arrive, so you can be fully present for the day.</p></div>
+        <div class="sym-extras">
+          {% if has_cooking %}
+            <article class="sym-extra"><img src="{{ extra_image_1 | asset_url }}" alt="Authentic Pad Thai cooking workshop at Casa de Mango" width="600" height="420" loading="lazy"><div class="sym-extra__copy"><h3>Authentic Thai Cooking Workshop</h3><p>At Casa de Mango organic farm, prepare and enjoy Pad Thai using a traditional family recipe.</p></div></article>
+          {% endif %}
+          {% if has_trek %}
+            <article class="sym-extra"><img src="{{ extra_image_3 | asset_url }}" alt="Doi Inthanon waterfall and national park trekking" width="600" height="420" loading="lazy"><div class="sym-extra__copy"><h3>Doi Inthanon Expedition</h3><p>Explore cool mountain trails, Karen culture and a photogenic waterfall inside Thailand's celebrated national park.</p></div></article>
+          {% elsif has_rafting %}
+            <article class="sym-extra"><img src="{{ extra_image_3 | asset_url }}" alt="Bamboo rafting and waterfall adventure in Chiang Mai" width="600" height="420" loading="lazy"><div class="sym-extra__copy"><h3>Wang River Bamboo Rafting</h3><p>Glide downstream on a traditional bamboo raft and cool off during a relaxed riverside adventure.</p></div></article>
+          {% else %}
+            <article class="sym-extra"><img src="{{ extra_image_3 | asset_url }}" alt="Natural Thai sanctuary landscape" width="600" height="420" loading="lazy"><div class="sym-extra__copy"><h3>Natural Sanctuary Setting</h3><p>Spend unhurried time in a greener, quieter habitat designed around elephant wellbeing.</p></div></article>
+          {% endif %}
+          <article class="sym-extra"><img src="{{ extra_image_2 | asset_url }}" alt="Premium all-inclusive elephant sanctuary service" width="600" height="420" loading="lazy"><div class="sym-extra__copy"><h3>All-Inclusive Care</h3><p>Accident insurance, chilled drinking water and professional photography with digital upload are included.</p></div></article>
+          <article class="sym-extra"><img src="{{ hero_image | asset_url }}" alt="Responsible ethical elephant sanctuary in Thailand" width="600" height="420" loading="lazy"><div class="sym-extra__copy"><h3>Elephant-Led Encounters</h3><p>Strictly no riding, no shows and no forced interaction. Their comfort determines the pace of your visit.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sym-section sym-section--soft" id="itinerary">
+      <div class="sym-wrap">
+        <div class="sym-intro"><div class="sym-kicker">Your Itinerary</div><h2 class="sym-heading">Your day, step by step.</h2><p>A clear view of the journey from hotel pickup to your return, with each part of the experience paired with real sanctuary moments.</p></div>
+        <div class="sym-itinerary">
+          {%- for itinerary_time in itinerary_times -%}
+            {%- assign itinerary_index = forloop.index0 -%}
+            {%- assign itinerary_title = itinerary_titles[itinerary_index] -%}
+            {%- assign itinerary_detail = itinerary_details[itinerary_index] -%}
+            {%- assign itinerary_image = itinerary_images[itinerary_index] -%}
+            <article class="sym-itinerary__item">
+              <div class="sym-itinerary__time">{{ itinerary_time }}</div>
+              <div class="sym-itinerary__copy"><h3>{{ itinerary_title }}</h3><p>{{ itinerary_detail }}</p></div>
+              <div class="sym-itinerary__media"><img src="{{ itinerary_image | asset_url }}" alt="{{ itinerary_title | escape }}" width="600" height="420" loading="lazy"></div>
+            </article>
+          {%- endfor -%}
+        </div>
+        <p class="sym-itinerary__note">Times are approximate, except for the designated pickup window. The order may adjust for traffic, weather and elephant-led pacing. Final pickup details are confirmed before your tour.</p>
+      </div>
+    </section>
+
+    <section class="sym-section" id="pickup-zone">
+      <div class="sym-wrap">
+        <div class="sym-intro"><div class="sym-kicker">Hotel Transfer Guide</div><h2 class="sym-heading">Share your pickup details.</h2><p>Enter your hotel name or complete address during booking. If your pickup location needs special attention, our team will contact you directly.</p></div>
+        <div class="sym-pickup">
+          <div class="sym-pickup__copy">
+            <div class="sym-kicker">{{ pickup_region }} Pickup Guide</div>
+            <h3>Is your hotel in the transfer area?</h3>
+            {% if pickup_region == 'Chiang Mai' %}
+              <p>Complimentary pickup and drop-off are available for accommodation within a 5 km radius of Chiang Mai Old City.</p>
+              <div class="sym-pickup__zones"><div class="sym-pickup__zone"><strong>Free pickup</strong>Hotels and accommodation within 5 km of Chiang Mai Old City.</div><div class="sym-pickup__zone"><strong>Outside the free radius</strong>A small surcharge may apply. Contact our team before your tour so we can confirm the amount.</div><div class="sym-pickup__zone"><strong>Private transfer</strong>A private vehicle can be arranged for 2,500 THB.</div></div>
+            {% elsif pickup_region == 'Bangkok' %}
+              <p>Complimentary Bangkok transfers are available from hotels in the official pickup zones below.</p>
+              <div class="sym-pickup__zones"><div class="sym-pickup__zone"><strong>Zone 1</strong>Bo Bae, Khao San, Yaowarat and Sathorn.</div><div class="sym-pickup__zone"><strong>Zone 2</strong>Phaya Thai, Huai Khwang, Sukhumvit, Lumphini, Siam, Silom and Suan Luang.</div><div class="sym-pickup__zone"><strong>Zone 3</strong>Bang Na and Suvarnabhumi.</div><div class="sym-pickup__zone"><strong>Outside the free zones</strong>Locations across the Chao Phraya River or outside the listed areas may use Ekkamai Bus Terminal as a meeting point or request a paid transfer.</div></div>
+            {% else %}
+              <p>Complimentary transfers are available from hotels in North, Central and South Pattaya.</p>
+              <div class="sym-pickup__zones"><div class="sym-pickup__zone"><strong>Free pickup</strong>Hotels in North, Central and South Pattaya city areas.</div><div class="sym-pickup__zone"><strong>Jomtien area</strong>Additional 100 THB per booking.</div><div class="sym-pickup__zone"><strong>Nong Nooch Garden area</strong>Additional 200 THB per booking.</div><div class="sym-pickup__zone"><strong>Custom locations</strong>Other locations may be possible with an additional charge confirmed by our team.</div></div>
+            {% endif %}
+            <p class="sym-pickup__fine">Final pickup location and time are confirmed by our team one day before your visit. Please be ready 15 minutes before your scheduled pickup window.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sym-section" id="faq">
+      <div class="sym-wrap">
+        <div class="sym-intro"><div class="sym-kicker">The Fine Print</div><h2 class="sym-heading">Good to know.</h2><p>Clear answers, kept quietly out of the way until you need them.</p></div>
+        <div class="sym-faq">
+          <details><summary>What is the free hotel transfer zone?</summary><p>Chiang Mai tours include round-trip air-conditioned hotel transfer within 5 km of the Old City. Chonburi tours include specified central Bangkok and Pattaya zones. We will confirm any small out-of-zone surcharge before your visit.</p></details>
+          <details><summary>Can I cancel or change my booking?</summary><p>Yes. Free cancellation is available until 24 hours before your tour. Approved refunds only exclude unavoidable channel or payment processing fees.</p></details>
+          <details><summary>Is the tour suitable during pregnancy?</summary><p>Please contact us before booking. We can help you choose a gentler itinerary and explain walking, river and transfer conditions clearly.</p></details>
+          <details><summary>Can you prepare vegetarian food?</summary><p>Yes. Please add your dietary request during checkout or message us in advance. Vegetarian requirements are easy to accommodate.</p></details>
+          <details><summary>What should I bring?</summary><p>Bring a change of clothes, swimwear or quick-dry clothing, secure sandals, sunscreen, insect repellent, a towel and personal medication.</p></details>
+          <details><summary>When will I receive my free photos?</summary><p>Professional photos are digitally uploaded within 72 hours and kept for 90 days. Visit our Free Tour Photos page after your experience.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+{% render 'elehub-editorial-footer' %}
+
+<script>
+  (() => {
+    const input = document.querySelector('#SymVariant-{{ section.id }}');
+    const hotelInput = document.querySelector('#SymHotel-{{ section.id }}');
+    const hotelField = document.querySelector('#SymHotelField-{{ section.id }}');
+    const pickupOptions = document.querySelectorAll('[data-sym-pickup-option]');
+    const guestNameInput = document.querySelector('#SymName-{{ section.id }}');
+    const tourDateInput = document.querySelector('#SymDate-{{ section.id }}');
+    const summaryName = document.querySelector('#SymSummaryName-{{ section.id }}');
+    const summaryDate = document.querySelector('#SymSummaryDate-{{ section.id }}');
+    const summaryHotel = document.querySelector('#SymSummaryHotel-{{ section.id }}');
+    document.querySelectorAll('input[name="sym_variant_{{ section.id }}"]').forEach((radio) => {
+      radio.addEventListener('change', () => { if (radio.checked && input) input.value = radio.value; });
+    });
+    const updateBookingSummary = () => {
+      const meetingPointSelected = document.querySelector('[data-sym-pickup-option="meeting"]')?.checked;
+      if (summaryName) summaryName.textContent = guestNameInput?.value.trim() || 'Add your name';
+      if (summaryDate) summaryDate.textContent = tourDateInput?.value || 'Choose a tour date';
+      if (summaryHotel) summaryHotel.textContent = meetingPointSelected ? 'Ekkamai Bus Terminal meeting point' : (hotelInput?.value.trim() || 'Add your hotel or address');
+    };
+    const updatePickupOption = () => {
+      const meetingPointSelected = document.querySelector('[data-sym-pickup-option="meeting"]')?.checked;
+      if (hotelField && hotelInput) {
+        hotelField.hidden = meetingPointSelected;
+        hotelInput.required = !meetingPointSelected;
+        if (meetingPointSelected) hotelInput.value = '';
+      }
+      updateBookingSummary();
+    };
+    [guestNameInput, tourDateInput, hotelInput].forEach((field) => field?.addEventListener('input', updateBookingSummary));
+    pickupOptions.forEach((option) => option.addEventListener('change', updatePickupOption));
+    if (tourDateInput) tourDateInput.min = new Date().toISOString().split('T')[0];
+    updatePickupOption();
+    updateBookingSummary();
+
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Elephant symmetry flow",
+  "settings": [],
+  "presets": [{ "name": "Elephant symmetry flow" }]
+}
+{% endschema %}

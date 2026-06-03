@@ -1,0 +1,335 @@
+{{ 'elephant-care-blog-v2.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign article_handle = article.handle | default: ''
+  assign cta_title = section.settings.default_cta_title
+  assign cta_copy = section.settings.default_cta_copy
+  assign cta_url = section.settings.default_cta_url
+  assign cta_secondary_label = section.settings.default_secondary_label
+  assign cta_secondary_url = section.settings.default_secondary_url
+  assign quick_label = section.settings.default_quick_label
+  assign quick_value = section.settings.default_quick_value
+  assign article_hero = 'elehub-selected-033.jpg'
+  assign article_gallery = 'elehub-selected-034.jpg,elehub-selected-035.jpg,elehub-selected-036.jpg,elehub-selected-037.jpg,elehub-selected-038.jpg,elehub-selected-039.jpg'
+  assign gallery_heading = 'A closer look at responsible sanctuary travel'
+  assign gallery_copy = 'Real moments from our camps, selected to show elephants with space, calm surroundings, and respectful observation.'
+
+  if article_handle contains 'bangkok' or article_handle contains 'pattaya' or article_handle contains 'chonburi'
+    assign cta_title = 'Meet our Chonburi herd without flying north'
+    assign cta_copy = 'Book the Bangkok or Pattaya transfer tour and spend time with rescued elephants just a short drive from the city.'
+    assign cta_url = '/products/chonburi-ethical-half-day-morning-bangkok-departure'
+    assign cta_secondary_label = 'View Pattaya departures'
+    assign cta_secondary_url = '/products/chonburi-ethical-half-day-morning-pattaya-departure'
+    assign quick_label = 'Best for'
+    assign quick_value = 'Bangkok and Pattaya travelers'
+    assign article_hero = 'elehub-selected-044.jpg'
+    assign article_gallery = 'elehub-selected-073.jpg,elehub-selected-082.jpg,elehub-selected-083.jpg,elehub-selected-084.jpg,elehub-selected-093.jpg,elehub-selected-094.jpg'
+    assign gallery_heading = 'Chonburi sanctuary moments near Bangkok and Pattaya'
+    assign gallery_copy = 'A greener escape close to the city, with open landscapes and elephant-led encounters.'
+  elsif article_handle contains 'big-boy' or article_handle contains 'no-contact'
+    assign cta_title = 'Experience our no-contact sanctuary philosophy in person'
+    assign cta_copy = 'Join the Thaielehub sanctuary for a quiet observation-led day where elephants keep their space and set the pace.'
+    assign cta_url = '/products/big-boy-chiang-mai-ethical-half-day-morning'
+    assign cta_secondary_label = 'See the full-day option'
+    assign cta_secondary_url = '/products/big-boy-chiang-mai-full-day-elephants-rafting-waterfall'
+    assign quick_label = 'Best for'
+    assign quick_value = 'Wildlife photographers and conservation-minded guests'
+    assign article_hero = 'elehub-selected-092.jpg'
+    assign article_gallery = 'elehub-selected-085.jpg,elehub-selected-086.jpg,elehub-selected-087.jpg,elehub-selected-088.jpg,elehub-selected-089.jpg,elehub-selected-090.jpg'
+    assign gallery_heading = 'Why respectful distance creates better encounters'
+    assign gallery_copy = 'Observation-first photography gives elephants room to choose their own pace while visitors enjoy more natural behavior.'
+  elsif article_handle contains 'wear' or article_handle contains 'bring' or article_handle contains 'survival-guide'
+    assign cta_title = 'Turn your research into a smooth, well-prepared travel day'
+    assign cta_copy = 'Our Chiang Mai sanctuary provides traditional clothing, lunch, photography, and insurance so you can arrive ready and relaxed.'
+    assign cta_url = '/products/living-green-chiang-mai-full-day-pad-thai-cooking'
+    assign cta_secondary_label = 'View half-day morning'
+    assign cta_secondary_url = '/products/living-green-chiang-mai-ethical-half-day-morning'
+    assign quick_label = 'Best for'
+    assign quick_value = 'First-time sanctuary visitors'
+    assign article_hero = 'elehub-selected-054.jpg'
+    assign article_gallery = 'elehub-selected-055.jpg,elehub-selected-056.jpg,elehub-selected-057.jpg,elehub-selected-058.jpg,elehub-selected-059.jpg,elehub-selected-060.jpg'
+    assign gallery_heading = 'What a well-prepared sanctuary day feels like'
+    assign gallery_copy = 'Comfortable clothing, outdoor paths, calm observation, and time to enjoy the setting without rushing.'
+  elsif article_handle contains 'ethical' or article_handle contains 'insider-guide'
+    assign cta_title = 'Support a foundation-led sanctuary with one booking'
+    assign cta_copy = 'Visit our rescued herd in Chiang Mai and help fund long-term welfare, habitat repair, and better feeding standards.'
+    assign cta_url = '/products/living-green-chiang-mai-ethical-half-day-morning'
+    assign cta_secondary_label = 'See our full-day sanctuary'
+    assign cta_secondary_url = '/products/casa-de-mango-cooking-ethical-elephant-sanctuary'
+    assign quick_label = 'Best for'
+    assign quick_value = 'Guests comparing ethical sanctuaries'
+    assign article_hero = 'elehub-selected-061.jpg'
+    assign article_gallery = 'elehub-selected-062.jpg,elehub-selected-063.jpg,elehub-selected-064.jpg,elehub-selected-065.jpg,elehub-selected-066.jpg,elehub-selected-067.jpg'
+    assign gallery_heading = 'The visual signs of an ethical sanctuary'
+    assign gallery_copy = 'Look for open space, relaxed body language, natural surroundings, and visitors who respect the herd’s boundaries.'
+  endif
+
+  assign article_gallery_images = article_gallery | split: ','
+-%}
+
+<section class="elephant-care-shell elephant-care-article color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="elephant-care-article__hero">
+      <div class="elephant-care-article__image">
+        <img
+          src="{{ article_hero | asset_url }}"
+          alt="{{ article.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} — ethical elephant sanctuary field photo"
+          loading="eager"
+          fetchpriority="high"
+          width="1400"
+          height="1050"
+        >
+      </div>
+
+      <div class="elephant-care-article__panel">
+        <p class="elephant-care-kicker">{{ section.settings.kicker }}</p>
+        <h1 class="elephant-care-article__title">{{ article.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }}</h1>
+
+        <div class="elephant-care-article__meta">
+          <span>{{ article.published_at | date: '%B %d, %Y' }}</span>
+          <span>{{ section.settings.meta_label }}</span>
+          {%- if article.author != blank -%}<span>{{ article.author }}</span>{%- endif -%}
+        </div>
+
+        <div class="elephant-care-article__deck">
+          {%- if article.excerpt != blank -%}
+            {{ article.excerpt | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' }}
+          {%- else -%}
+            {{ article.content | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | strip_html | truncatewords: 42 }}
+          {%- endif -%}
+        </div>
+
+        <div class="elephant-care-article__quickfacts">
+          <div class="elephant-care-article__fact">
+            <span class="elephant-care-article__fact-label">Good to know</span>
+            <span>{{ quick_value }}</span>
+          </div>
+          <div class="elephant-care-article__fact">
+            <span class="elephant-care-article__fact-label">{{ quick_label }}</span>
+            <span>{{ section.settings.default_quick_support }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="elephant-care-article__body rte">
+      {{ article.content | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' }}
+    </div>
+
+    <section class="elephant-care-article__gallery" aria-label="{{ gallery_heading | escape }}">
+      <div class="elephant-care-article__gallery-head">
+        <p class="elephant-care-kicker">Selected sanctuary moments</p>
+        <h2>{{ gallery_heading }}</h2>
+        <p>{{ gallery_copy }}</p>
+      </div>
+      <div class="elephant-care-article__gallery-grid">
+        {%- for gallery_image in article_gallery_images -%}
+          <figure class="elephant-care-article__gallery-item">
+            <img
+              src="{{ gallery_image | asset_url }}"
+              alt="{{ article.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} — selected sanctuary moment {{ forloop.index }}"
+              loading="lazy"
+              width="1000"
+              height="750"
+            >
+          </figure>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <div class="elephant-care-article__cta">
+      <div>
+        <h2>{{ cta_title }}</h2>
+        <p>{{ cta_copy }}</p>
+      </div>
+      <div class="elephant-care-article__cta-actions">
+        <a class="elephant-care-article__button" href="{{ cta_url }}">{{ section.settings.primary_button_label }}</a>
+        {%- if cta_secondary_label != blank and cta_secondary_url != blank -%}
+          <a class="elephant-care-article__button elephant-care-article__button--ghost" href="{{ cta_secondary_url }}">{{ cta_secondary_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- assign more_count = 0 -%}
+    <div class="elephant-care-article__more">
+      <h2>{{ section.settings.more_guides_heading }}</h2>
+      <div class="elephant-care-article__more-grid">
+        {%- for related_article in blog.articles -%}
+          {%- if related_article.id != article.id and more_count < 3 -%}
+            {%- assign more_count = more_count | plus: 1 -%}
+            <article class="elephant-care-article__more-card">
+              <p class="caption-with-letter-spacing">{{ related_article.published_at | date: '%b %d, %Y' }}</p>
+              <h3><a href="{{ related_article.url }}?view=elephant-care">{{ related_article.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }}</a></h3>
+              <p>
+                {%- if related_article.excerpt != blank -%}
+                  {{ related_article.excerpt | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | strip_html | truncatewords: 18 }}
+                {%- else -%}
+                  {{ related_article.content | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | strip_html | truncatewords: 18 }}
+                {%- endif -%}
+              </p>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="elephant-care-article__back">
+      <a href="{{ blog.url }}">{{ section.settings.back_label | replace: '[blog]', blog.title }}</a>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+  {{ article | structured_data | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' }}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Thaielehub",
+      "item": "{{ shop.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": "{{ shop.url }}{{ blog.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | json }},
+      "item": "{{ shop.url }}{{ article.url }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "@id": "{{ shop.url }}/#organization",
+  "name": "Thaielehub",
+  "url": "{{ shop.url }}",
+  "description": "Thaielehub helps travelers compare and book elephant sanctuary experiences in Chiang Mai, Bangkok and Pattaya with clear itineraries, hotel pickup guidance and welfare-first travel information.",
+  "areaServed": [
+    { "@type": "City", "name": "Chiang Mai" },
+    { "@type": "City", "name": "Bangkok" },
+    { "@type": "City", "name": "Pattaya" }
+  ]
+}
+</script>
+{%- if request.path contains 'thailand-elephant-sanctuary-faq-before-booking' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Does sanctuary automatically mean ethical?", "acceptedAnswer": { "@type": "Answer", "text": "No. Read the itinerary and look for clear welfare boundaries." } },
+    { "@type": "Question", "name": "Should tourists ride elephants?", "acceptedAnswer": { "@type": "Answer", "text": "No. Avoid elephant-riding tours and circus-style shows." } },
+    { "@type": "Question", "name": "Is elephant bathing ethical?", "acceptedAnswer": { "@type": "Answer", "text": "The key question is whether the elephant chooses the interaction. Observation-led experiences give elephants more control over their own behavior." } },
+    { "@type": "Question", "name": "Is a half-day elephant sanctuary tour enough?", "acceptedAnswer": { "@type": "Answer", "text": "For many first-time visitors, yes. A well-designed half-day experience can feel complete." } },
+    { "@type": "Question", "name": "Can I make an elephant sanctuary day trip from Bangkok?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Choose a Bangkok departure and keep your evening flexible for road traffic." } },
+    { "@type": "Question", "name": "Can children join an elephant sanctuary tour?", "acceptedAnswer": { "@type": "Answer", "text": "Often, but check the itinerary, transfer time and walking conditions before booking." } },
+    { "@type": "Question", "name": "Is hotel pickup included?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the selected product and your location. Check the pickup-area section before booking." } },
+    { "@type": "Question", "name": "What if I stay in an Airbnb or villa?", "acceptedAnswer": { "@type": "Answer", "text": "Enter the complete address and add a clear booking note." } }
+  ]
+}
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Elephant care article",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Elephant Care & Welfare Blog"
+    },
+    {
+      "type": "text",
+      "id": "meta_label",
+      "label": "Meta label",
+      "default": "Field report"
+    },
+    {
+      "type": "text",
+      "id": "default_quick_label",
+      "label": "Quick fact label",
+      "default": "Why readers save this guide"
+    },
+    {
+      "type": "text",
+      "id": "default_quick_value",
+      "label": "Quick fact value",
+      "default": "Conservation context written for first-time ethical travelers"
+    },
+    {
+      "type": "text",
+      "id": "default_quick_support",
+      "label": "Quick fact support text",
+      "default": "Every guide links to a foundation-led tour, not a riding camp"
+    },
+    {
+      "type": "text",
+      "id": "default_cta_title",
+      "label": "Default CTA title",
+      "default": "Meet our rescued herd with a welfare-first Chiang Mai day"
+    },
+    {
+      "type": "textarea",
+      "id": "default_cta_copy",
+      "label": "Default CTA copy",
+      "default": "Book a foundation-led sanctuary experience and turn your research into direct support for long-term elephant welfare."
+    },
+    {
+      "type": "url",
+      "id": "default_cta_url",
+      "label": "Default primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Book an ethical tour"
+    },
+    {
+      "type": "text",
+      "id": "default_secondary_label",
+      "label": "Default secondary label",
+      "default": "Explore all Chiang Mai tours"
+    },
+    {
+      "type": "url",
+      "id": "default_secondary_url",
+      "label": "Default secondary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "more_guides_heading",
+      "label": "Related guides heading",
+      "default": "Keep reading before you book"
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Back label",
+      "default": "Back to [blog]"
+    }
+  ]
+}
+{% endschema %}

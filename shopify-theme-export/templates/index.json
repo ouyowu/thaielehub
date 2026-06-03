@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "custom-homepage-v2-clean-nav": {
+      "type": "custom-homepage-v2",
+      "settings": {}
+    }
+  },
+  "order": [
+    "custom-homepage-v2-clean-nav"
+  ]
+}
