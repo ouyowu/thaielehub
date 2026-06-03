@@ -8,6 +8,7 @@ body {
   font-family: var(--elehub-claude-serif);
   background: #fbfcf9;
   color: #424b3c;
+  overflow-x: clip;
 }
 
 .gallery-strip,
@@ -37,6 +38,22 @@ input,
 select,
 textarea {
   font-weight: 400;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button,
+.button,
+summary,
+a {
+  touch-action: manipulation;
 }
 
 h1,
@@ -667,5 +684,55 @@ nav a {
   .elehub-editorial-header__logo img {
     width: 32px;
     height: 28px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  html {
+    scroll-padding-top: 74px;
+  }
+
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  :where(#MainContent) :where(input, select, textarea, button, .button) {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  :where(#MainContent) :where(p, li) {
+    overflow-wrap: anywhere;
+  }
+
+  :where(#MainContent) :where(.page-width) {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  :where(#MainContent) :where(.card__heading, .article-card__title, .elephant-care-card__title) {
+    line-height: 1.08;
+  }
+
+  :where(#MainContent) :where(.media img, .card__media img, .elephant-care-card__image) {
+    object-position: center center;
+  }
+
+  .elehub-tripadvisor-awards__copy h2 {
+    font-size: clamp(3rem, 12vw, 4.4rem);
+  }
+
+  .elehub-tripadvisor-awards__grid img {
+    max-height: 118px;
+  }
+
+  .elehub-editorial-footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .elehub-editorial-footer__bottom,
+  .elehub-editorial-footer__bottom div {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
