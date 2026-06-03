@@ -1,11 +1,11 @@
 {
   "sections": {
-    "custom-homepage-v2-clean-nav": {
-      "type": "custom-homepage-v2",
+    "custom-homepage-v3-clean-nav": {
+      "type": "custom-homepage-v3",
       "settings": {}
     }
   },
   "order": [
-    "custom-homepage-v2-clean-nav"
+    "custom-homepage-v3-clean-nav"
   ]
 }

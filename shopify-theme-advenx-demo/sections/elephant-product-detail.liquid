@@ -1,0 +1,941 @@
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign hero_image = 'elehub-selected-016.jpg'
+  assign gallery_1 = 'elehub-selected-021.jpg'
+  assign gallery_2 = 'elehub-selected-024.jpg'
+  assign gallery_3 = 'elehub-selected-027.jpg'
+  assign gallery_4 = 'elehub-selected-019.jpg'
+
+  if product.handle contains 'bamboo-rafting'
+    assign hero_image = 'elehub-selected-005.jpg'
+    assign gallery_1 = 'elehub-selected-022.jpg'
+    assign gallery_2 = 'elehub-selected-011.jpg'
+    assign gallery_3 = 'elehub-selected-006.jpg'
+    assign gallery_4 = 'elehub-selected-029.jpg'
+  elsif product.handle contains 'doi-inthanon'
+    assign hero_image = 'elehub-selected-030.jpg'
+    assign gallery_1 = 'elehub-selected-016.jpg'
+    assign gallery_2 = 'elehub-selected-024.jpg'
+    assign gallery_3 = 'elehub-selected-032.jpg'
+    assign gallery_4 = 'elehub-selected-027.jpg'
+  elsif product.handle contains 'casa-de-mango'
+    assign hero_image = 'elehub-selected-012.jpg'
+    assign gallery_1 = 'elehub-selected-010.jpg'
+    assign gallery_2 = 'elehub-selected-027.jpg'
+    assign gallery_3 = 'elehub-selected-004.jpg'
+    assign gallery_4 = 'elehub-selected-024.jpg'
+  elsif product.handle contains 'chonburi'
+    assign hero_image = 'elehub-selected-017.jpg'
+    assign gallery_1 = 'elehub-selected-002.jpg'
+    assign gallery_2 = 'elehub-selected-020.jpg'
+    assign gallery_3 = 'elehub-selected-014.jpg'
+    assign gallery_4 = 'elehub-selected-028.jpg'
+  elsif product.handle contains 'big-boy'
+    assign hero_image = 'elehub-selected-009.jpg'
+    assign gallery_1 = 'elehub-selected-007.jpg'
+    assign gallery_2 = 'elehub-selected-013.jpg'
+    assign gallery_3 = 'elehub-selected-018.jpg'
+    assign gallery_4 = 'elehub-selected-006.jpg'
+  elsif product.handle contains 'cooking'
+    assign hero_image = 'elehub-selected-011.jpg'
+    assign gallery_1 = 'elehub-selected-023.jpg'
+    assign gallery_2 = 'elehub-selected-010.jpg'
+    assign gallery_3 = 'elehub-selected-027.jpg'
+    assign gallery_4 = 'elehub-selected-015.jpg'
+  endif
+
+  assign location_label = 'Chiang Mai'
+  if product.handle contains 'chonburi'
+    assign location_label = 'Chonburi'
+  endif
+
+  assign duration_label = 'Half-day'
+  if product.title contains 'Full-Day' or product.title contains 'Full-day' or product.title contains 'Full Day'
+    assign duration_label = 'Full-day'
+  endif
+
+  assign ethos_label = 'No riding · No shows · Elephant-led'
+  if product.handle contains 'big-boy'
+    assign ethos_label = 'Zero-control · Observation-first · Karen-led'
+  endif
+
+  assign product_form_id = 'product-form-' | append: section.id
+-%}
+
+<style>
+  .shopify-section-group-header-group,
+  .shopify-section-group-footer-group {
+    display: none !important;
+  }
+
+  .ele-tour {
+    --black: #111;
+    --dark: #1a1a1a;
+    --mid: #555;
+    --muted: #777;
+    --border: #e5dfd6;
+    --bg: #f7f5f2;
+    --warm: #f2ede8;
+    --white: #fff;
+    --green: #2d5016;
+    --gdeep: #1e3a0f;
+    --gold: #c8a96e;
+    --sans: Georgia, "Times New Roman", Times, serif;
+    color: var(--dark);
+    background: var(--bg);
+    font-family: var(--sans);
+    line-height: 1.6;
+  }
+
+  .ele-tour * {
+    box-sizing: border-box;
+  }
+
+  .ele-tour a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ele-tour img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ele-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(247, 245, 242, 0.88);
+    border-bottom: 1px solid rgba(45, 80, 22, 0.12);
+    backdrop-filter: blur(16px);
+  }
+
+  .ele-nav__inner,
+  .ele-wrap {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .ele-nav__inner {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .ele-brand {
+    color: var(--green);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ele-nav__links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    color: var(--mid);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ele-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid rgba(45, 80, 22, 0.2);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.74);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ele-hero {
+    padding: 42px 0 28px;
+  }
+
+  .ele-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.72fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .ele-hero__media {
+    position: relative;
+    min-height: 620px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--green);
+    box-shadow: 0 28px 80px rgba(17, 17, 17, 0.16);
+  }
+
+  .ele-hero__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.46));
+  }
+
+  .ele-hero__caption {
+    position: absolute;
+    left: 26px;
+    right: 26px;
+    bottom: 26px;
+    z-index: 1;
+    color: white;
+  }
+
+  .ele-hero__caption strong {
+    display: block;
+    font-size: clamp(34px, 5vw, 70px);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+  }
+
+  .ele-hero__caption span {
+    display: block;
+    max-width: 560px;
+    margin-top: 14px;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 16px;
+  }
+
+  .ele-book {
+    align-self: start;
+    position: sticky;
+    top: 96px;
+    padding: 28px;
+    border: 1px solid rgba(45, 80, 22, 0.15);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 22px 64px rgba(17, 17, 17, 0.1);
+  }
+
+  .ele-vendor {
+    margin: 18px 0 8px;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ele-title {
+    margin: 0;
+    color: var(--black);
+    font-size: clamp(31px, 4vw, 52px);
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+
+  .ele-subline {
+    margin-top: 16px;
+    color: var(--mid);
+    font-size: 16px;
+  }
+
+  .ele-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 24px 0;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ele-price span {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ele-price strong {
+    color: var(--green);
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .ele-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 22px 0 24px;
+  }
+
+  .ele-meta__item {
+    padding: 13px 12px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--bg);
+  }
+
+  .ele-meta__item span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ele-meta__item strong {
+    display: block;
+    margin-top: 4px;
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .ele-variant-label {
+    display: block;
+    margin: 0 0 10px;
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ele-variant-list {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .ele-variant {
+    position: relative;
+  }
+
+  .ele-variant input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ele-variant__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 58px;
+    gap: 16px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .ele-variant input:checked + .ele-variant__box {
+    border-color: var(--green);
+    background: #f3f7ef;
+  }
+
+  .ele-variant__box strong {
+    color: var(--black);
+    font-size: 14px;
+  }
+
+  .ele-variant__box span {
+    color: var(--green);
+    font-weight: 800;
+  }
+
+  .ele-actions .product-form__buttons {
+    display: grid;
+    gap: 12px;
+  }
+
+  .ele-actions .button,
+  .ele-actions .shopify-payment-button__button {
+    min-height: 56px;
+    border-radius: 999px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+  }
+
+  .ele-actions .button {
+    border: 0;
+    background: var(--green);
+    color: white;
+  }
+
+  .ele-actions .product-form__submit {
+    min-height: 60px;
+    background: var(--gdeep);
+    color: white;
+    box-shadow: 0 18px 34px rgba(30, 58, 15, 0.22);
+  }
+
+  .ele-actions .shopify-payment-button__button {
+    min-height: 60px;
+    background: var(--gdeep) !important;
+    color: white !important;
+    border-radius: 999px !important;
+    box-shadow: 0 18px 34px rgba(30, 58, 15, 0.22);
+  }
+
+  .ele-booking-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 18px 0;
+  }
+
+  .ele-field {
+    display: grid;
+    gap: 6px;
+  }
+
+  .ele-field label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ele-field input,
+  .ele-field select {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: white;
+    color: var(--black);
+    font: inherit;
+    font-size: 14px;
+    padding: 0 12px;
+  }
+
+  .ele-trust {
+    display: grid;
+    gap: 9px;
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 18px;
+    background: #f5f1e8;
+    color: #2d3329;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .ele-note {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .ele-gallery {
+    padding: 26px 0 44px;
+  }
+
+  .ele-gallery__grid {
+    display: grid;
+    grid-template-columns: 1.2fr repeat(2, 0.7fr);
+    grid-template-rows: repeat(2, 220px);
+    gap: 14px;
+  }
+
+  .ele-gallery__tile {
+    overflow: hidden;
+    border-radius: 22px;
+    background: var(--warm);
+  }
+
+  .ele-gallery__tile:first-child {
+    grid-row: span 2;
+  }
+
+  .ele-content {
+    padding: 20px 0 76px;
+  }
+
+  .ele-content__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(300px, 0.32fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .ele-description {
+    padding: 34px;
+    border-radius: 28px;
+    background: white;
+    box-shadow: 0 20px 60px rgba(17, 17, 17, 0.06);
+  }
+
+  .ele-description h2,
+  .ele-description h3 {
+    margin: 32px 0 12px;
+    color: var(--black);
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .ele-description h2:first-child,
+  .ele-description h3:first-child {
+    margin-top: 0;
+  }
+
+  .ele-description p,
+  .ele-description li {
+    color: #383838;
+    font-size: 16px;
+  }
+
+  .ele-description ul,
+  .ele-description ol {
+    display: grid;
+    gap: 10px;
+    margin: 14px 0 0 20px;
+    padding: 0;
+  }
+
+  .ele-side {
+    display: grid;
+    gap: 16px;
+  }
+
+  .ele-card {
+    padding: 24px;
+    border: 1px solid rgba(45, 80, 22, 0.14);
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 16px 42px rgba(17, 17, 17, 0.05);
+  }
+
+  .ele-card h2 {
+    margin: 0 0 12px;
+    color: var(--black);
+    font-size: 24px;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .ele-checks {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--mid);
+    font-size: 14px;
+  }
+
+  .ele-checks li::before {
+    content: "✓";
+    margin-right: 8px;
+    color: var(--green);
+    font-weight: 900;
+  }
+
+  .ele-tabs {
+    display: grid;
+    gap: 12px;
+  }
+
+  .ele-tab {
+    border: 1px solid rgba(45, 80, 22, 0.14);
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+  }
+
+  .ele-tab summary {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 22px;
+    color: var(--black);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 900;
+    list-style: none;
+  }
+
+  .ele-tab summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ele-tab summary::after {
+    content: "+";
+    color: var(--green);
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .ele-tab[open] summary::after {
+    content: "−";
+  }
+
+  .ele-tab__body {
+    padding: 0 22px 22px;
+    color: var(--mid);
+  }
+
+  .ele-tab__body ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0 0 0 18px;
+  }
+
+  .ele-contact {
+    display: block;
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 999px;
+    background: #25d366;
+    color: white;
+    text-align: center;
+    font-weight: 900;
+  }
+
+  .ele-footer {
+    padding: 36px 0 46px;
+    background: var(--gdeep);
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .ele-footer strong {
+    color: white;
+  }
+
+  @media (max-width: 920px) {
+    .ele-nav__links {
+      display: none;
+    }
+
+    .ele-hero__grid,
+    .ele-content__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ele-hero__media {
+      min-height: 440px;
+    }
+
+    .ele-book {
+      position: static;
+    }
+
+    .ele-gallery__grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 180px);
+    }
+
+    .ele-gallery__tile:first-child {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ele-nav__inner,
+    .ele-wrap {
+      width: min(100% - 22px, 1180px);
+    }
+
+    .ele-hero {
+      padding-top: 22px;
+    }
+
+    .ele-hero__media {
+      min-height: 360px;
+      border-radius: 22px;
+    }
+
+    .ele-book,
+    .ele-description,
+    .ele-card {
+      padding: 20px;
+      border-radius: 22px;
+    }
+
+    .ele-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .ele-booking-fields {
+      grid-template-columns: 1fr;
+    }
+
+    .ele-gallery__grid {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 8px;
+    }
+
+    .ele-gallery__tile {
+      flex: 0 0 82%;
+      height: 240px;
+      scroll-snap-align: start;
+    }
+  }
+</style>
+
+<div class="ele-tour" data-section-id="{{ section.id }}">
+  <header class="ele-nav">
+    <div class="ele-nav__inner">
+      <a class="ele-brand" href="{{ routes.root_url }}">Thaielehub</a>
+      <nav class="ele-nav__links" aria-label="Tour page navigation">
+        <a href="{{ routes.root_url }}">Home</a>
+        <a href="#experience">Experience</a>
+        <a href="#details">Details</a>
+        <a href="#booking">Book</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="ele-hero">
+      <div class="ele-wrap ele-hero__grid">
+        <div class="ele-hero__media">
+          <img
+            src="{{ hero_image | asset_url }}"
+            alt="{{ product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} ethical elephant sanctuary experience"
+            width="1400"
+            height="980"
+            loading="eager"
+          >
+          <div class="ele-hero__caption">
+            <strong>Ethical elephant experience</strong>
+            <span>{{ ethos_label }} in a natural Thai sanctuary setting.</span>
+          </div>
+        </div>
+
+        <aside class="ele-book" id="booking" aria-label="Booking panel">
+          <span class="ele-pill">Book direct · Secure checkout</span>
+          <div class="ele-vendor">{{ product.vendor }}</div>
+          <h1 class="ele-title">{{ product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }}</h1>
+          <p class="ele-subline">{{ product.type }} · {{ location_label }}</p>
+
+          <div class="ele-price">
+            <span>From</span>
+            <strong id="ElePrice-{{ section.id }}">{{ product.selected_or_first_available_variant.price | money }}</strong>
+          </div>
+
+          <div class="ele-meta">
+            <div class="ele-meta__item">
+              <span>Location</span>
+              <strong>{{ location_label }}</strong>
+            </div>
+            <div class="ele-meta__item">
+              <span>Duration</span>
+              <strong>{{ duration_label }}</strong>
+            </div>
+            <div class="ele-meta__item">
+              <span>Style</span>
+              <strong>Ethical</strong>
+            </div>
+          </div>
+
+          {%- form 'product', product, id: product_form_id, class: 'ele-actions form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input
+              id="EleVariantInput-{{ section.id }}"
+              class="product-variant-id"
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+            >
+
+            <div class="ele-booking-fields" aria-label="Booking details">
+              <div class="ele-field">
+                <label for="BookingDate-{{ section.id }}">Tour date</label>
+                <input id="BookingDate-{{ section.id }}" type="date" name="properties[Tour date]" required>
+              </div>
+              <div class="ele-field">
+                <label for="BookingSession-{{ section.id }}">Session</label>
+                <select id="BookingSession-{{ section.id }}" name="properties[Session]" required>
+                  <option value="">Choose session</option>
+                  <option value="Morning">Morning Session</option>
+                  <option value="Afternoon">Afternoon Session</option>
+                  <option value="Full Day">Full Day</option>
+                </select>
+              </div>
+              <div class="ele-field">
+                <label for="Adults-{{ section.id }}">Adults</label>
+                <input id="Adults-{{ section.id }}" type="number" name="properties[Adults]" min="0" value="1">
+              </div>
+              <div class="ele-field">
+                <label for="Children-{{ section.id }}">Children</label>
+                <input id="Children-{{ section.id }}" type="number" name="properties[Children]" min="0" value="0">
+              </div>
+            </div>
+
+            {%- if product.variants.size > 1 -%}
+              <span class="ele-variant-label">Choose ticket</span>
+              <div class="ele-variant-list">
+                {%- for variant in product.variants -%}
+                  <label class="ele-variant">
+                    <input
+                      type="radio"
+                      name="ele_variant_{{ section.id }}"
+                      value="{{ variant.id }}"
+                      data-price="{{ variant.price | money }}"
+                      {% if variant.id == product.selected_or_first_available_variant.id %}checked{% endif %}
+                      {% unless variant.available %}disabled{% endunless %}
+                    >
+                    <span class="ele-variant__box">
+                      <strong>{{ variant.title }}</strong>
+                      <span>{{ variant.price | money }}</span>
+                    </span>
+                  </label>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+
+            <div class="product-form__buttons">
+              <button
+                type="submit"
+                name="add"
+                class="button button--full-width"
+                {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+              >
+                <span>Book this experience</span>
+                {%- render 'loading-spinner' -%}
+              </button>
+              {{ form | payment_button }}
+            </div>
+          {%- endform -%}
+
+          <p class="ele-note">No riding. No shows. Includes guided experience, local meal, transfers where specified, and digital photos.</p>
+          <div class="ele-trust" aria-label="Trust badges">
+            <div>Official Foundation Rate (No Middleman)</div>
+            <div>TripAdvisor Travelers' Choice Top 10 Winners</div>
+            <div>100% Ethical & Responsible (Strictly No Riding)</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ele-gallery" aria-label="Experience gallery">
+      <div class="ele-wrap ele-gallery__grid">
+        <div class="ele-gallery__tile"><img src="{{ hero_image | asset_url }}" alt="{{ product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} main sanctuary photo" width="900" height="720" loading="lazy"></div>
+        <div class="ele-gallery__tile"><img src="{{ gallery_1 | asset_url }}" alt="{{ product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} elephant encounter" width="700" height="500" loading="lazy"></div>
+        <div class="ele-gallery__tile"><img src="{{ gallery_2 | asset_url }}" alt="{{ product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} nature activity" width="700" height="500" loading="lazy"></div>
+        <div class="ele-gallery__tile"><img src="{{ gallery_3 | asset_url }}" alt="{{ product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} local experience" width="700" height="500" loading="lazy"></div>
+        <div class="ele-gallery__tile"><img src="{{ gallery_4 | asset_url }}" alt="{{ product.title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | escape }} sanctuary landscape" width="700" height="500" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="ele-content" id="experience">
+      <div class="ele-wrap ele-content__grid">
+        <article class="ele-description ele-tabs" id="details">
+          <details class="ele-tab" open>
+            <summary>Itinerary</summary>
+            <div class="ele-tab__body">
+              {{ product.description }}
+            </div>
+          </details>
+          <details class="ele-tab">
+            <summary>What to Bring</summary>
+            <div class="ele-tab__body">
+              <ul>
+                <li>Comfortable change of clothes</li>
+                <li>Swimwear or quick-dry clothes for river or waterfall activities</li>
+                <li>Walking sandals or secure shoes</li>
+                <li>Eco-friendly sunscreen and insect repellent</li>
+                <li>Personal towel and any personal medication</li>
+              </ul>
+            </div>
+          </details>
+          <details class="ele-tab">
+            <summary>Included</summary>
+            <div class="ele-tab__body">
+              <ul>
+                <li>Free all-inclusive accident insurance</li>
+                <li>Free professional photography service, digitally uploaded within 72 hours</li>
+                <li>English-speaking guide and sanctuary activity materials</li>
+                <li>Local meal, drinking water, and transfers where specified in the itinerary</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <aside class="ele-side" aria-label="Trust and booking details">
+          <div class="ele-card">
+            <h2>Why book this tour</h2>
+            <ul class="ele-checks">
+              <li>Ethical sanctuary policy with no riding or shows</li>
+              <li>Clear adult and child pricing before checkout</li>
+              <li>Designed for international travelers and families</li>
+              <li>Digital photo service included where specified</li>
+            </ul>
+          </div>
+
+          <div class="ele-card">
+            <h2>Before you go</h2>
+            <ul class="ele-checks">
+              <li>Bring comfortable clothes and walking sandals</li>
+              <li>Use eco-friendly sunscreen and insect repellent</li>
+              <li>River or bathing activities are elephant-led and seasonal</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ele-footer">
+    <div class="ele-wrap">
+      <strong>Thaielehub Elephant Sanctuary</strong>
+      <p>Ethical elephant encounters in Thailand. Built around respect, conservation, and quiet time in nature.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (() => {
+    const root = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!root) return;
+
+    const hiddenInput = root.querySelector('#EleVariantInput-{{ section.id }}');
+    const price = root.querySelector('#ElePrice-{{ section.id }}');
+    const radios = root.querySelectorAll('input[name="ele_variant_{{ section.id }}"]');
+
+    radios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        if (!radio.checked) return;
+        if (hiddenInput) hiddenInput.value = radio.value;
+        if (price && radio.dataset.price) price.textContent = radio.dataset.price;
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Elephant product detail",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Elephant product detail"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "elephant-product-symmetry",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

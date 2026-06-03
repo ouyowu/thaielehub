@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "elephant-care-article",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Elephant Care & Welfare Blog",
+        "meta_label": "Field report",
+        "default_quick_label": "Why readers save this guide",
+        "default_quick_value": "Conservation context written for first-time ethical travelers",
+        "default_quick_support": "Every guide links to a foundation-led tour, not a riding camp",
+        "default_cta_title": "Meet our rescued herd with a welfare-first Chiang Mai day",
+        "default_cta_copy": "Book a foundation-led sanctuary experience and turn your research into direct support for long-term elephant welfare.",
+        "default_cta_url": "/products/living-green-chiang-mai-ethical-half-day-morning",
+        "primary_button_label": "Book an ethical tour",
+        "default_secondary_label": "Explore all Chiang Mai tours",
+        "default_secondary_url": "/collections/all",
+        "more_guides_heading": "Keep reading before you book",
+        "back_label": "Back to [blog]"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

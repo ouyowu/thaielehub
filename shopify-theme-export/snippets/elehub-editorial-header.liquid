@@ -21,7 +21,16 @@
         <a href="/blogs/elephant-sanctuary-thailand-guides">Journal</a>
         <a href="/#faq">FAQ</a>
       </div>
-      <a href="{{ routes.root_url }}" class="elehub-editorial-header__logo">Thaielehub</a>
+      <a href="{{ routes.root_url }}" class="elehub-editorial-header__logo" aria-label="Thaielehub home">
+        <img
+          src="{{ 'thaielehub-logo-mark.png' | asset_url }}"
+          alt=""
+          width="84"
+          height="72"
+          loading="eager"
+        >
+        <span>ThaiEleHub</span>
+      </a>
       <div class="elehub-editorial-header__nav-right">
         <button class="elehub-editorial-header__hamburger" type="button" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span>

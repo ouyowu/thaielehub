@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "elephant-care-blog",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Elephant Care & Welfare Blog",
+        "intro": "Field notes, ethical travel guidance, and conservation stories for guests who want to understand Thailand's elephant welfare landscape before they book.",
+        "meta_label": "Insider field guide",
+        "read_more_label": "Read the full guide",
+        "posts_per_page": 6,
+        "padding_top": 56,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": ["main"]
+}
