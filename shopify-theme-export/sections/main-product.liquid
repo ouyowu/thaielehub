@@ -33,12 +33,6 @@
     assign gallery_2 = 'elehub-selected-020.jpg'
     assign gallery_3 = 'elehub-selected-014.jpg'
     assign gallery_4 = 'elehub-selected-028.jpg'
-  elsif product.handle contains 'big-boy'
-    assign hero_image = 'elehub-selected-009.jpg'
-    assign gallery_1 = 'elehub-selected-007.jpg'
-    assign gallery_2 = 'elehub-selected-013.jpg'
-    assign gallery_3 = 'elehub-selected-018.jpg'
-    assign gallery_4 = 'elehub-selected-006.jpg'
   elsif product.handle contains 'cooking'
     assign hero_image = 'elehub-selected-011.jpg'
     assign gallery_1 = 'elehub-selected-023.jpg'
@@ -58,9 +52,6 @@
   endif
 
   assign ethos_label = 'No riding · No shows · Elephant-led'
-  if product.handle contains 'big-boy'
-    assign ethos_label = 'Zero-control · Observation-first · Karen-led'
-  endif
 
   assign product_form_id = 'product-form-' | append: section.id
 -%}

@@ -1,11 +1,13 @@
 {
   "sections": {
-    "custom-homepage-v2-clean-nav": {
-      "type": "custom-homepage-v2",
-      "settings": {}
+    "custom-homepage-livinggreen-clean-nav": {
+      "type": "custom-homepage-livinggreen",
+      "settings": {
+        "cache_bust": "remove-bigboy-2026-06-04"
+      }
     }
   },
   "order": [
-    "custom-homepage-v2-clean-nav"
+    "custom-homepage-livinggreen-clean-nav"
   ]
 }

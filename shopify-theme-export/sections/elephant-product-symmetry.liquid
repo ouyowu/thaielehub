@@ -27,12 +27,6 @@
     assign display_title = 'Thaielehub Pattaya Departure Half-Day Encounter (Morning)'
   elsif product.handle == 'chonburi-ethical-half-day-afternoon-pattaya-departure'
     assign display_title = 'Thaielehub Pattaya Departure Half-Day Encounter (Afternoon)'
-  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-morning'
-    assign display_title = 'Thaielehub Chiang Mai Observation Encounter (Morning)'
-  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-afternoon'
-    assign display_title = 'Thaielehub Chiang Mai Observation Encounter (Afternoon)'
-  elsif product.handle == 'big-boy-chiang-mai-full-day-elephants-rafting-waterfall'
-    assign display_title = 'Thaielehub Chiang Mai Full-Day Encounter + Rafting & Waterfall'
   endif
 
   assign location_label = 'Chiang Mai'
@@ -40,21 +34,12 @@
   assign pickup_region = 'Chiang Mai'
   assign pickup_window = 'Confirmed one day before your tour'
   assign has_bangkok_meeting_point = false
-  assign is_big_boy = false
   assign has_cooking = false
   assign has_rafting = false
   assign has_trek = false
 
   if product.title contains 'Full-Day' or product.title contains 'Full-day' or product.title contains 'Full Day'
     assign duration_label = 'Full-day'
-  endif
-
-  if product.handle contains 'big-boy'
-    assign is_big_boy = true
-    assign hero_image = 'elehub-selected-092.jpg'
-    assign feeding_image = 'elehub-selected-085.jpg'
-    assign walking_image = 'elehub-selected-086.jpg'
-    assign water_image = 'elehub-selected-090.jpg'
   endif
 
   if product.handle contains 'chonburi'
@@ -65,11 +50,7 @@
     assign water_image = 'elehub-selected-073.jpg'
   endif
 
-  if product.handle == 'big-boy-chiang-mai-ethical-half-day-morning'
-    assign pickup_window = '07:00 - 07:30'
-  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-afternoon'
-    assign pickup_window = '11:30 - 12:00'
-  elsif product.handle contains 'half-day-morning'
+  if product.handle contains 'half-day-morning'
     assign pickup_window = '07:00 - 07:30'
   elsif product.handle contains 'half-day-afternoon'
     assign pickup_window = '12:00 - 12:30'
@@ -79,8 +60,6 @@
     assign pickup_window = '07:00'
   elsif product.handle == 'casa-de-mango-cooking-ethical-elephant-sanctuary'
     assign pickup_window = '07:30'
-  elsif product.handle == 'big-boy-chiang-mai-full-day-elephants-rafting-waterfall'
-    assign pickup_window = '07:30 - 08:00'
   endif
 
   if product.handle contains 'bangkok-departure'
@@ -147,21 +126,6 @@
     assign itinerary_titles = 'Hotel pickup and local market visit|Arrive at Casa de Mango organic farm|Cook a five-course Thai menu|Enjoy your freshly prepared meal|Ethical elephant sanctuary visit|Return to Chiang Mai' | split: '|'
     assign itinerary_details = 'Begin with hotel pickup and a local market stop to discover the ingredients behind northern Thai cooking.|Continue to the organic farm, meet your host and prepare for a small-group culinary session.|Make spring rolls, Tom Yum or curry, a stir-fry, Pad Thai and dessert with step-by-step guidance.|Sit down to enjoy the dishes you cooked before the second half of the experience begins.|Spend the afternoon feeding, observing and learning about elephants in a respectful sanctuary setting.|Travel back to Chiang Mai after a full day of food, culture and elephant care.' | split: '|'
     assign itinerary_images = 'elehub-selected-054.jpg|elehub-selected-011.jpg|elehub-selected-016.jpg|elehub-selected-011.jpg|elehub-selected-015.jpg|elehub-selected-051.jpg' | split: '|'
-  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-morning'
-    assign itinerary_times = '07:00 - 07:30|09:30|Morning|12:00|12:30|13:00 - 14:00' | split: '|'
-    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Arrive and learn the no-control philosophy|Food, vitamins and habitat care|Authentic Pad Thai cooking workshop|Enjoy your lunch|Say goodbye and return to Chiang Mai' | split: '|'
-    assign itinerary_details = 'Travel from your hotel in air-conditioned transport through the Chiang Mai countryside.|Join an elephant education briefing before preparing food and beginning the observation experience.|Prepare fruit, observe ethical feeding, make herbal vitamin balls, harvest elephant grass and plant banana trees.|Learn to cook Pad Thai with local guidance and a traditional family recipe.|Enjoy the Pad Thai you prepared alongside other local Thai dishes.|Offer the vitamin balls, say farewell to the herd and arrive back at your hotel at approximately 14:00.' | split: '|'
-    assign itinerary_images = 'elehub-selected-092.jpg|elehub-selected-086.jpg|elehub-selected-085.jpg|elehub-selected-011.jpg|elehub-selected-016.jpg|elehub-selected-090.jpg' | split: '|'
-  elsif product.handle == 'big-boy-chiang-mai-ethical-half-day-afternoon'
-    assign itinerary_times = '11:30 - 12:00|13:30|Afternoon|Afternoon|17:30|18:30' | split: '|'
-    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Arrive and learn the no-control philosophy|Food, vitamins and habitat care|Authentic Pad Thai cooking workshop|Say goodbye and return to Chiang Mai|Arrive at your hotel' | split: '|'
-    assign itinerary_details = 'Travel from your hotel in air-conditioned transport through the Chiang Mai countryside.|Join an elephant education briefing before preparing food and beginning the observation experience.|Prepare fruit, observe ethical feeding, make herbal vitamin balls, harvest elephant grass and plant banana trees.|Learn to cook Pad Thai with local guidance, then enjoy your creation with other local Thai dishes.|Offer the handmade vitamin balls, say farewell to the herd and begin the return journey.|Arrive back at your Chiang Mai accommodation at approximately 18:30.' | split: '|'
-    assign itinerary_images = 'elehub-selected-092.jpg|elehub-selected-086.jpg|elehub-selected-085.jpg|elehub-selected-011.jpg|elehub-selected-090.jpg|elehub-selected-016.jpg' | split: '|'
-  elsif product.handle == 'big-boy-chiang-mai-full-day-elephants-rafting-waterfall'
-    assign itinerary_times = '07:30 - 08:00|09:30|12:00 - 13:00|13:30|14:30|15:30 - 17:00' | split: '|'
-    assign itinerary_titles = 'Hotel pickup in Chiang Mai|Elephant observation and habitat care|Pad Thai cooking workshop and lunch|Mae Wang waterfall|Bamboo rafting on the Mae Wang River|Return to Chiang Mai' | split: '|'
-    assign itinerary_details = 'Travel from your hotel in air-conditioned transport through the Chiang Mai countryside.|Learn the no-control philosophy, prepare food, observe feeding, make vitamin balls and help with habitat enrichment.|Cook authentic Pad Thai, enjoy your lunch and say farewell to the elephants before continuing downstream.|Swim in the waterfall pools or relax on the banks during a refreshing jungle stop.|Drift along the Mae Wang River on a guided bamboo raft surrounded by green riverbanks.|Begin the return journey and arrive at your Chiang Mai hotel at approximately 17:00.' | split: '|'
-    assign itinerary_images = 'elehub-selected-092.jpg|elehub-selected-085.jpg|elehub-selected-011.jpg|elehub-selected-082.jpg|elehub-selected-029.jpg|elehub-selected-090.jpg' | split: '|'
   elsif product.handle == 'chonburi-ethical-half-day-morning-bangkok-departure'
     assign itinerary_times = '07:00 - 08:00|09:30|Morning|Late morning|12:00|13:00' | split: '|'
     assign itinerary_titles = 'Bangkok hotel pickup|Arrive and change into a Mo Hom shirt|Elephant briefing and feeding|Nature walk to the panoramic hilltop|Ancient Pad Thai lunch|Depart the sanctuary' | split: '|'
@@ -424,7 +388,7 @@
         <div class="sym-intro"><div class="sym-kicker">The Experience</div><h2 class="sym-heading">Three moments. One unforgettable day.</h2><p>Forget a crowded checklist. Slow down, enter their world, and experience the sanctuary through its most meaningful moments.</p></div>
         <div class="sym-highlights">
           <article class="sym-highlight"><div class="sym-highlight__media"><img src="{{ feeding_image | asset_url }}" alt="Guests preparing food for rescued elephants" width="800" height="620" loading="lazy"></div><div class="sym-highlight__copy"><div class="sym-highlight__number">01 · A gentle introduction</div><h3>Greet Them with Love.</h3><p>Change into a traditional northern shirt, prepare nourishing food and herbal treats, then watch these rescued giants softly curl their trunks around a gift from your palm. There are no hooks and no punishments here.</p></div></article>
-          <article class="sym-highlight"><div class="sym-highlight__media"><img src="{{ walking_image | asset_url }}" alt="Elephants freely walking through natural Thai forest" width="800" height="620" loading="lazy"></div><div class="sym-highlight__copy"><div class="sym-highlight__number">02 · Natural observation</div><h3>Walk Their Way.</h3><p>No riding. No commands. Follow their rhythm into a natural forest habitat and observe their real character, freedom and quiet intelligence.{% if is_big_boy %} Thaielehub is a zero-control observation sanctuary designed for respectful wildlife photography.{% endif %}</p></div></article>
+          <article class="sym-highlight"><div class="sym-highlight__media"><img src="{{ walking_image | asset_url }}" alt="Elephants freely walking through natural Thai forest" width="800" height="620" loading="lazy"></div><div class="sym-highlight__copy"><div class="sym-highlight__number">02 · Natural observation</div><h3>Walk Their Way.</h3><p>No riding. No commands. Follow their rhythm into a natural forest habitat and observe their real character, freedom and quiet intelligence.</p></div></article>
           <article class="sym-highlight"><div class="sym-highlight__media"><img src="{{ water_image | asset_url }}" alt="Refreshing river or waterfall experience in Thailand" width="800" height="620" loading="lazy"></div><div class="sym-highlight__copy"><div class="sym-highlight__number">03 · Refreshing adventure</div><h3>Splashes of Joy.</h3><p>Join the elephants near the water only when they choose to play.{% if has_rafting %} Your signature experience continues with a peaceful bamboo rafting trip along the Wang River.{% elsif has_trek %} Your expedition continues beneath a hidden jungle waterfall.{% else %} Their comfort always comes first, making every moment honest and unforced.{% endif %}</p></div></article>
         </div>
       </div>
