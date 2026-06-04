@@ -9,7 +9,7 @@ shopify theme list --store "${STORE}"
 echo
 cat <<'EOF'
 Theme map:
-- LIVE official theme: thaielehub-live-fixed-2026-06-03 (#191803359603)
+- LIVE official theme: thaielehub-geo-split-header-2026-06-04 (#191849759091)
   Local path: shopify-theme-export
 - DEMO only: Thaielehub Advenx Demo 2026-06-03 (#191801557363)
   Local path: shopify-theme-advenx-demo

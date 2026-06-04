@@ -38,8 +38,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .nav-left .nav-tours-menu a{display:block;padding:11px 10px;letter-spacing:.12em;line-height:1.3}
 .nav-left .nav-tours-menu a:hover{background:var(--bg);color:var(--green)}
 .nav-left .nav-tours-menu span{display:block;margin-top:3px;color:var(--muted);font-size:9px;font-weight:400;letter-spacing:.04em;text-transform:none}
-.nav-logo{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-align:center;font-family:var(--sans);font-size:15px;font-weight:500;letter-spacing:.18em;text-transform:none;color:var(--dark);white-space:nowrap}
-.nav-logo img{width:38px;height:34px;object-fit:contain}
+.nav-logo{text-align:center;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:var(--dark);white-space:nowrap}
 .nav-right{display:flex;align-items:center;justify-content:flex-end;gap:18px}
 .nav-icon{display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--dark);transition:color .2s}
 .nav-icon:hover{color:var(--muted)}
@@ -196,16 +195,19 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .how-title{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--dark);margin-bottom:8px}
 .how-text{font-family:var(--sans);font-size:13px;font-weight:400;color:var(--mid);line-height:1.82}
 
-/* ── AWARDS ── */
-.awards-section{background:var(--dark);color:#fff;padding:82px 40px}
-.awards-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:46px;align-items:center}
-.awards-copy .sec-label{color:rgba(200,169,110,.86)}
-.awards-copy .sec-title{color:#fff}
-.awards-copy .sec-body{color:rgba(255,255,255,.58);margin-top:18px}
-.awards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.award-card{display:flex;min-height:178px;align-items:center;justify-content:center;padding:18px;border:1px solid rgba(200,169,110,.22);background:rgba(255,255,255,.045);transition:transform .28s var(--ease),background .28s var(--ease),border-color .28s var(--ease)}
-.award-card:hover{transform:translateY(-5px);border-color:rgba(200,169,110,.58);background:rgba(255,255,255,.08)}
-.award-card img{width:min(148px,100%);height:auto;object-fit:contain}
+/* ── GALLERY STRIP ── */
+.gallery-strip{display:grid;grid-template-columns:repeat(5,1fr);height:260px}
+.gallery-strip-item{overflow:hidden}
+.gallery-strip-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.gallery-strip-item:hover img{transform:scale(1.08)}
+.selected-gallery{background:var(--dark);padding:84px 28px 32px}
+.selected-gallery-head{max-width:1240px;margin:0 auto 30px;color:#fff}
+.selected-gallery-head .sec-label{color:rgba(255,255,255,.64)}
+.selected-gallery-head .sec-title{color:#fff}
+.selected-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:1240px;margin:0 auto}
+.selected-gallery-item{aspect-ratio:4/3;overflow:hidden;background:#233127}
+.selected-gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.selected-gallery-item:hover img{transform:scale(1.06)}
 
 /* ── TESTIMONIALS ── */
 .testi-section{background:var(--bg)}
@@ -266,8 +268,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .footer{background:var(--dark);padding:68px 40px 36px}
 .footer-inner{max-width:1280px;margin:0 auto}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:28px}
-.footer-logo{display:block;margin-bottom:18px}
-.footer-logo img{width:min(230px,100%);height:auto;object-fit:contain;filter:drop-shadow(0 14px 28px rgba(0,0,0,.18))}
+.footer-logo{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+.footer-logo span{display:block;font-size:10px;font-weight:400;letter-spacing:.16em;color:var(--gold);margin-top:4px;text-transform:uppercase}
 .footer-about{font-family:var(--sans);font-size:13px;font-weight:400;color:rgba(255,255,255,.42);line-height:1.85;margin-bottom:24px;max-width:260px}
 .footer-socials{display:flex;gap:14px}
 .footer-soc{font-family:var(--sans);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.42);transition:color .2s;cursor:pointer}
@@ -314,7 +316,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .baby-img img{min-height:300px}
   .baby-text{padding:52px 36px}
   .how-grid{grid-template-columns:1fr 1fr}
-  .awards-inner{grid-template-columns:1fr;gap:30px}
   .footer-top{grid-template-columns:1fr 1fr;gap:32px}
   .stats-band{grid-template-columns:1fr 1fr}
 }
@@ -324,6 +325,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .ethics-grid{grid-template-columns:1fr 1fr}
   .testi-grid{grid-template-columns:1fr}
   .journal-grid{grid-template-columns:1fr 1fr}
+  .gallery-strip{grid-template-columns:repeat(3,1fr);height:200px}
+  .selected-gallery-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
   body{padding-bottom:68px}
@@ -357,13 +360,13 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .journal-header{display:block;margin-bottom:30px}
   .journal-header .journal-link{display:inline-block;margin-top:18px}
   .journal-grid{grid-template-columns:1fr;max-width:430px}
-  .awards-section{padding:66px 20px}
-  .awards-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .award-card{min-height:150px;padding:14px}
   .faq-grid{grid-template-columns:1fr}
   .faq-item{border-right:none!important}
   .faq-item:nth-last-child(-n+2){border-bottom:1px solid var(--border)}
   .faq-item:last-child{border-bottom:none}
+  .gallery-strip{grid-template-columns:1fr 1fr;height:180px}
+  .selected-gallery{padding:58px 14px 20px}
+  .selected-gallery-grid{grid-template-columns:repeat(2,1fr);gap:5px}
   .footer-top{grid-template-columns:1fr;gap:28px}
   .bk-btns{flex-direction:column;align-items:center}
   .tab-group{flex-wrap:nowrap}
@@ -375,8 +378,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 }
 @media(max-width:480px){
   .stats-band{grid-template-columns:1fr 1fr}
-  .nav-logo{font-size:12px;letter-spacing:.14em}
-  .nav-logo img{width:32px;height:28px}
+  .nav-logo{font-size:11px;letter-spacing:.26em}
+  .gallery-strip{display:none}
+  .selected-gallery-grid{grid-template-columns:1fr 1fr}
+  .selected-gallery-item{aspect-ratio:1/1}
 }
 </style>
 <!-- ANNOUNCE -->
@@ -403,10 +408,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <a href="/blogs/elephant-sanctuary-thailand-guides">Journal</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="{{ routes.root_url }}" class="nav-logo" aria-label="Thaielehub home">
-      <img src="{{ 'thaielehub-logo-mark.png' | asset_url }}" alt="" width="76" height="64" loading="eager">
-      <span>ThaiEleHub</span>
-    </a>
+    <a href="{{ routes.root_url }}" class="nav-logo">Thaielehub</a>
     <div class="nav-right">
       <button class="nav-hamburger" id="navHam" aria-label="Menu">
         <span></span><span></span>
@@ -442,7 +444,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <p class="slide-label">Ethical Sanctuary · Chiang Mai</p>
-      <h1 class="slide-title">Walk with elephants<br>in their <em>true home.</em></h1>
+      <h1 class="slide-title">ThaiEleHub ethical elephant tours<br><em>in Thailand.</em></h1>
       <div class="slide-btns">
         <a href="#tours" onclick="switchTabDirect('cm')" class="btn-ghost">View Chiang Mai Tours</a>
         <a href="#tours" class="btn-ghost">View All Tours</a>
@@ -455,7 +457,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <p class="slide-label">Chonburi Sanctuary · From Bangkok</p>
-      <h1 class="slide-title">Only 90 minutes<br><em>from the city.</em></h1>
+      <h2 class="slide-title">Only 90 minutes<br><em>from the city.</em></h2>
       <div class="slide-btns">
         <a href="#tours" onclick="switchTabDirect('bk')" class="btn-ghost">View Bangkok Tours</a>
         <a href="#camps" class="btn-ghost">See the Camp</a>
@@ -468,7 +470,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <p class="slide-label">Chonburi Sanctuary · From Pattaya</p>
-      <h1 class="slide-title">40 minutes away.<br><em>A world apart.</em></h1>
+      <h2 class="slide-title">40 minutes away.<br><em>A world apart.</em></h2>
       <div class="slide-btns">
         <a href="#tours" onclick="switchTabDirect('pt')" class="btn-ghost">View Pattaya Tours</a>
         <a href="#tours" class="btn-ghost">View All Tours</a>
@@ -485,7 +487,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 <!-- STATS -->
 <div class="stats-band">
-  <div class="stat-item reveal"><div class="stat-num" data-count="20">0</div><div class="stat-label">Rescued Elephants</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="20">20+</div><div class="stat-label">Rescued Elephants</div></div>
   <div class="stat-item reveal d1"><div class="stat-num">2016</div><div class="stat-label">Year Founded</div></div>
   <div class="stat-item reveal d2"><div class="stat-num">3</div><div class="stat-label">Camp Locations</div></div>
   <div class="stat-item reveal d3"><div class="stat-num">13</div><div class="stat-label">Tours Available</div></div>
@@ -904,6 +906,31 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   </div>
 </section>
 
+<!-- GALLERY STRIP -->
+<div class="gallery-strip">
+  <div class="gallery-strip-item"><img width="1200" height="800" loading="lazy" src="{{ 'elehub-selected-001.jpg' | asset_url }}" alt="Respectful elephant sanctuary visit in Thailand"></div>
+  <div class="gallery-strip-item"><img width="1200" height="800" loading="lazy" src="{{ 'elehub-selected-002.jpg' | asset_url }}" alt="Elephants roaming in a natural sanctuary setting"></div>
+  <div class="gallery-strip-item"><img width="1200" height="800" loading="lazy" src="{{ 'elehub-selected-003.jpg' | asset_url }}" alt="Ethical elephant encounter with comfortable distance"></div>
+  <div class="gallery-strip-item"><img width="1200" height="800" loading="lazy" src="{{ 'elehub-selected-004.jpg' | asset_url }}" alt="Elephant sanctuary experience in green surroundings"></div>
+  <div class="gallery-strip-item"><img width="1200" height="800" loading="lazy" src="{{ 'elehub-selected-005.jpg' | asset_url }}" alt="Elephant camp moment captured respectfully"></div>
+</div>
+
+<!-- CURATED SELECTED GALLERY -->
+{% assign selected_gallery = 'elehub-selected-003.jpg,elehub-selected-015.jpg,elehub-selected-020.jpg,elehub-selected-051.jpg,elehub-selected-057.jpg,elehub-selected-062.jpg,elehub-selected-073.jpg,elehub-selected-090.jpg,elehub-selected-092.jpg' | split: ',' %}
+<section class="selected-gallery" aria-label="Selected elephant sanctuary moments">
+  <div class="selected-gallery-head">
+    <span class="sec-label">Selected Moments</span>
+    <div class="sec-title">Real visits,<br><em>captured with care.</em></div>
+  </div>
+  <div class="selected-gallery-grid">
+    {% for gallery_image in selected_gallery %}
+      <div class="selected-gallery-item">
+        <img width="1200" height="900" loading="lazy" src="{{ gallery_image | asset_url }}" alt="Ethical elephant sanctuary experience in Thailand — selected moment {{ forloop.index }}">
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
 <!-- STORY EDITORIAL -->
 <section class="section editorial" id="story" style="padding:0">
   <div class="editorial-grid">
@@ -1040,32 +1067,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <div class="how-title">Enjoy Your Day</div>
         <p class="how-text">Driver picks you up on time. English-speaking guide throughout. Free professional photos uploaded within 72 hours.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRIPADVISOR AWARDS -->
-<section class="awards-section" aria-label="Tripadvisor Travelers' Choice awards">
-  <div class="awards-inner">
-    <div class="awards-copy reveal">
-      <span class="sec-label">Tripadvisor Recognition</span>
-      <div class="sec-title">Trusted by travelers,<br><em>year after year.</em></div>
-      <div class="sec-rule"></div>
-      <p class="sec-body">LivingGreen Elephant Sanctuary has received Tripadvisor Travelers' Choice recognition across 2023, 2024, 2025 and 2026. These awards reflect consistent guest satisfaction, thoughtful guiding and ethical elephant encounters in Chiang Mai.</p>
-    </div>
-    <div class="awards-grid">
-      <a class="award-card reveal d1" target="_blank" rel="noopener" href="https://www.tripadvisor.com/Attraction_Review-g293917-d23935719-Reviews-Living_Green_Elephant_Sanctuary-Chiang_Mai.html">
-        <img src="{{ 'tripadvisor-travelers-choice-2026.png' | asset_url }}" alt="Tripadvisor Travelers' Choice 2026 award for LivingGreen Elephant Sanctuary" width="180" height="180" loading="lazy">
-      </a>
-      <a class="award-card reveal d2" target="_blank" rel="noopener" href="https://www.tripadvisor.com/Attraction_Review-g293917-d23935719-Reviews-Living_Green_Elephant_Sanctuary-Chiang_Mai.html">
-        <img src="{{ 'tripadvisor-travelers-choice-2025.png' | asset_url }}" alt="Tripadvisor Travelers' Choice 2025 award for LivingGreen Elephant Sanctuary" width="180" height="180" loading="lazy">
-      </a>
-      <a class="award-card reveal d3" target="_blank" rel="noopener" href="https://www.tripadvisor.com/Attraction_Review-g293917-d23935719-Reviews-Living_Green_Elephant_Sanctuary-Chiang_Mai.html">
-        <img src="{{ 'tripadvisor-travelers-choice-2024.png' | asset_url }}" alt="Tripadvisor Travelers' Choice 2024 award for LivingGreen Elephant Sanctuary" width="180" height="180" loading="lazy">
-      </a>
-      <a class="award-card reveal d4" target="_blank" rel="noopener" href="https://www.tripadvisor.com/Attraction_Review-g293917-d23935719-Reviews-Living_Green_Elephant_Sanctuary-Chiang_Mai.html">
-        <img src="{{ 'tripadvisor-travelers-choice-2023.png' | asset_url }}" alt="Tripadvisor Travelers' Choice 2023 award for LivingGreen Elephant Sanctuary" width="180" height="180" loading="lazy">
-      </a>
     </div>
   </div>
 </section>
@@ -1210,10 +1211,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-logo">
-          <img src="{{ 'thaielehub-logo-large.png' | asset_url }}" alt="ThaiEleHub Ethical Elephant Encounters" width="314" height="260" loading="lazy">
-        </div>
-        <p class="footer-about">Ethical elephant sanctuary tours from Chiang Mai, Bangkok and Pattaya. No riding. No shows. No forced bathing. Clear itineraries, hotel pickup guidance and professional photos included.</p>
+        <div class="footer-logo">Thaielehub<span>Elephant Sanctuary · Thailand</span></div>
+        <p class="footer-about">Thailand's most ethical elephant sanctuary. Founded 2016. Camps in Chiang Mai and Chonburi Province. 20+ rescued elephants. No riding. No shows. No compromise.</p>
         <div class="footer-socials">
           <a href="https://www.facebook.com/livinggreenelephantsanctuary" target="_blank" class="footer-soc">Facebook</a>
           <a href="https://www.instagram.com/bigboy.elephants/" target="_blank" class="footer-soc">Instagram</a>
@@ -1240,12 +1239,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
+        <h4>Contact</h4>
         <ul>
-          <li><a href="https://maps.google.com/?q=8%20Rachadamnoen%20Rd%2C%20Si%20Phum%2C%20Mueang%20Chiang%20Mai%20District%2C%20Chiang%20Mai%2050200" target="_blank">LivingGreen Elephant Sanctuary</a></li>
-          <li><a href="tel:+66650208666">+66 65 020 8666</a></li>
-          <li><a href="mailto:ouyowu@gmail.com">ouyowu@gmail.com</a></li>
-          <li><a href="https://maps.google.com/?q=8%20Rachadamnoen%20Rd%2C%20Si%20Phum%2C%20Mueang%20Chiang%20Mai%20District%2C%20Chiang%20Mai%2050200" target="_blank">8 Rachadamnoen Rd, Chiang Mai 50200</a></li>
+          <li><a href="mailto:info@livinggreenelephantsanctuary.com">Email Us</a></li>
+          <li><a href="mailto:cs.bigboyelephants@gmail.com">Thaielehub Email</a></li>
         </ul>
       </div>
     </div>
@@ -1355,5 +1352,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   ]
 }
 {% endschema %}
-
-{% comment %} no selected gallery 2026-06-03T14:10 {% endcomment %}

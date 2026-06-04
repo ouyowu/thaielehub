@@ -8,17 +8,6 @@ body {
   font-family: var(--elehub-claude-serif);
   background: #fbfcf9;
   color: #424b3c;
-  overflow-x: clip;
-}
-
-.gallery-strip,
-.selected-gallery {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
 }
 
 body,
@@ -38,22 +27,6 @@ input,
 select,
 textarea {
   font-weight: 400;
-}
-
-img,
-video,
-iframe {
-  max-width: 100%;
-}
-
-input,
-select,
-textarea,
-button,
-.button,
-summary,
-a {
-  touch-action: manipulation;
 }
 
 h1,
@@ -112,86 +85,6 @@ nav a {
 .article-template__content.rte img {
   height: auto;
   border-radius: 2rem;
-}
-
-.elehub-tripadvisor-awards,
-.elehub-tripadvisor-awards * {
-  box-sizing: border-box;
-}
-
-.elehub-tripadvisor-awards {
-  padding: 82px 40px;
-  background: #1a1a1a;
-  color: #fff;
-}
-
-.elehub-tripadvisor-awards__inner {
-  display: grid;
-  max-width: 1280px;
-  margin: 0 auto;
-  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
-  gap: 46px;
-  align-items: center;
-}
-
-.elehub-tripadvisor-awards__copy span {
-  display: block;
-  margin-bottom: 12px;
-  color: rgba(200, 169, 110, 0.86);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
-
-.elehub-tripadvisor-awards__copy h2 {
-  margin: 0;
-  color: #fff !important;
-  font-size: clamp(3.2rem, 4vw, 5rem);
-  font-weight: 600 !important;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-}
-
-.elehub-tripadvisor-awards__copy h2 em {
-  font-style: italic;
-}
-
-.elehub-tripadvisor-awards__copy p {
-  max-width: 520px;
-  margin: 18px 0 0;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 1.45rem;
-  line-height: 1.78;
-}
-
-.elehub-tripadvisor-awards__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.elehub-tripadvisor-awards__grid a {
-  display: flex;
-  min-height: 178px;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  border: 1px solid rgba(200, 169, 110, 0.22);
-  background: rgba(255, 255, 255, 0.045);
-  transition: transform 0.28s ease, background 0.28s ease, border-color 0.28s ease;
-}
-
-.elehub-tripadvisor-awards__grid a:hover {
-  border-color: rgba(200, 169, 110, 0.58);
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-5px);
-}
-
-.elehub-tripadvisor-awards__grid img {
-  width: min(148px, 100%);
-  height: auto;
-  object-fit: contain;
 }
 
 .elehub-editorial-header,
@@ -317,23 +210,14 @@ nav a {
 }
 
 .elehub-editorial-header__logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
   color: #1a1a1a;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.36em;
   text-align: center;
   text-decoration: none;
+  text-transform: uppercase;
   white-space: nowrap;
-}
-
-.elehub-editorial-header__logo img {
-  width: 38px;
-  height: 34px;
-  object-fit: contain;
 }
 
 .elehub-editorial-header__icon {
@@ -452,7 +336,7 @@ nav a {
 
 .elehub-editorial-footer__top {
   display: grid;
-  grid-template-columns: 1.7fr 0.85fr 0.85fr 1.4fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 44px;
   padding-bottom: 52px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -460,15 +344,21 @@ nav a {
 }
 
 .elehub-editorial-footer__logo {
-  display: block;
   margin-bottom: 18px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
 }
 
-.elehub-editorial-footer__logo img {
-  width: min(230px, 100%);
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18));
+.elehub-editorial-footer__logo span {
+  display: block;
+  margin-top: 4px;
+  color: #c8a96e;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
 }
 
 .elehub-editorial-footer__about {
@@ -520,42 +410,6 @@ nav a {
 
 .elehub-editorial-footer__col a {
   font-size: 13px;
-}
-
-.elehub-editorial-footer__company-card {
-  display: grid;
-  gap: 13px;
-  padding: 18px;
-  border: 1px solid rgba(200, 169, 110, 0.2);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.035);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-}
-
-.elehub-editorial-footer__company-card p {
-  margin: 0;
-}
-
-.elehub-editorial-footer__company-card span {
-  display: block;
-  margin-bottom: 4px;
-  color: #c8a96e;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.elehub-editorial-footer__company-card strong,
-.elehub-editorial-footer__company-card a {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.65;
-}
-
-.elehub-editorial-footer__company-card a {
-  display: inline-flex;
 }
 
 .elehub-editorial-footer a:hover {
@@ -632,107 +486,5 @@ nav a {
 
   .elehub-editorial-footer__top > div:first-child {
     grid-column: 1 / -1;
-  }
-
-  .elehub-editorial-footer__top > div:last-child {
-    grid-column: 1 / -1;
-  }
-
-  .elehub-editorial-footer__company-card {
-    padding: 16px;
-  }
-
-  .elehub-tripadvisor-awards {
-    padding: 66px 20px;
-  }
-
-  .elehub-tripadvisor-awards__inner {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .elehub-tripadvisor-awards__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .elehub-tripadvisor-awards__grid a {
-    min-height: 150px;
-    padding: 14px;
-  }
-
-  .selected-gallery {
-    padding: 66px 20px !important;
-  }
-
-  .selected-gallery-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
-  }
-
-  .selected-gallery-item {
-    min-height: 150px !important;
-    padding: 14px !important;
-  }
-
-  .elehub-editorial-header__logo {
-    gap: 7px;
-    font-size: 12px;
-    letter-spacing: 0.14em;
-  }
-
-  .elehub-editorial-header__logo img {
-    width: 32px;
-    height: 28px;
-  }
-}
-
-@media screen and (max-width: 749px) {
-  html {
-    scroll-padding-top: 74px;
-  }
-
-  body {
-    -webkit-text-size-adjust: 100%;
-  }
-
-  :where(#MainContent) :where(input, select, textarea, button, .button) {
-    min-height: 44px;
-    font-size: 16px;
-  }
-
-  :where(#MainContent) :where(p, li) {
-    overflow-wrap: anywhere;
-  }
-
-  :where(#MainContent) :where(.page-width) {
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
-  }
-
-  :where(#MainContent) :where(.card__heading, .article-card__title, .elephant-care-card__title) {
-    line-height: 1.08;
-  }
-
-  :where(#MainContent) :where(.media img, .card__media img, .elephant-care-card__image) {
-    object-position: center center;
-  }
-
-  .elehub-tripadvisor-awards__copy h2 {
-    font-size: clamp(3rem, 12vw, 4.4rem);
-  }
-
-  .elehub-tripadvisor-awards__grid img {
-    max-height: 118px;
-  }
-
-  .elehub-editorial-footer__top {
-    grid-template-columns: 1fr;
-  }
-
-  .elehub-editorial-footer__bottom,
-  .elehub-editorial-footer__bottom div {
-    align-items: flex-start;
-    flex-direction: column;
   }
 }

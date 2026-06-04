@@ -497,6 +497,10 @@
       <div class="sym-wrap">
         <div class="sym-intro"><div class="sym-kicker">The Fine Print</div><h2 class="sym-heading">Good to know.</h2><p>Clear answers, kept quietly out of the way until you need them.</p></div>
         <div class="sym-faq">
+          <details><summary>Is this an ethical elephant sanctuary tour?</summary><p>Yes. This tour is designed around no riding, no shows and no forced interaction. Guests observe, feed or join water time only within the guide's welfare boundaries and the elephants' comfort.</p></details>
+          <details><summary>Is hotel pickup included?</summary><p>Yes, hotel pickup is included inside the listed {{ pickup_region }} transfer area. Enter your hotel name or full accommodation address during booking so our team can confirm the exact arrangement.</p></details>
+          <details><summary>How long is this elephant sanctuary tour?</summary><p>This is a {{ duration_label | downcase }} experience. The exact return time depends on traffic, weather and elephant-led pacing, and your final pickup details are confirmed before the tour.</p></details>
+          <details><summary>Can children join this tour?</summary><p>Children can usually join, but families should review the itinerary, walking conditions and transfer time before booking. Add a note during checkout if your child needs extra support.</p></details>
           <details><summary>What is the free hotel transfer zone?</summary><p>Chiang Mai tours include round-trip air-conditioned hotel transfer within 5 km of the Old City. Chonburi tours include specified central Bangkok and Pattaya zones. We will confirm any small out-of-zone surcharge before your visit.</p></details>
           <details><summary>Can I cancel or change my booking?</summary><p>Yes. Free cancellation is available until 24 hours before your tour. Approved refunds only exclude unavoidable channel or payment processing fees.</p></details>
           <details><summary>Is the tour suitable during pregnancy?</summary><p>Please contact us before booking. We can help you choose a gentler itinerary and explain walking, river and transfer conditions clearly.</p></details>
@@ -548,6 +552,147 @@
     updateBookingSummary();
 
   })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "{{ shop.url }}{{ product.url }}#product",
+  "name": {{ display_title | json }},
+  "description": {{ product.description | strip_html | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | truncate: 500 | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": "ThaiEleHub"
+  },
+  "url": "{{ shop.url }}{{ product.url }}",
+  "image": [
+    "{{ hero_image | asset_url }}",
+    "{{ feeding_image | asset_url }}",
+    "{{ walking_image | asset_url }}"
+  ],
+  "category": "Ethical elephant sanctuary tour",
+  "offers": [
+    {%- for variant in product.variants -%}
+      {
+        "@type": "Offer",
+        "name": {{ variant.title | json }},
+        "price": "{{ variant.price | divided_by: 100.0 }}",
+        "priceCurrency": "{{ cart.currency.iso_code }}",
+        "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+        "url": "{{ shop.url }}{{ product.url }}?variant={{ variant.id }}"
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "@id": "{{ shop.url }}{{ product.url }}#tour",
+  "name": {{ display_title | json }},
+  "description": {{ product.description | strip_html | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' | truncate: 500 | json }},
+  "touristType": "Ethical wildlife travelers",
+  "provider": {
+    "@type": "TravelAgency",
+    "@id": "{{ shop.url }}/#organization",
+    "name": "ThaiEleHub",
+    "url": "{{ shop.url }}"
+  },
+  "itinerary": [
+    {%- for itinerary_time in itinerary_times -%}
+      {%- assign itinerary_index = forloop.index0 -%}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "name": {{ itinerary_titles[itinerary_index] | strip_html | json }},
+        "description": {{ itinerary_details[itinerary_index] | strip_html | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "{{ product.price_min | divided_by: 100.0 }}",
+    "highPrice": "{{ product.price_max | divided_by: 100.0 }}",
+    "priceCurrency": "{{ cart.currency.iso_code }}",
+    "url": "{{ shop.url }}{{ product.url }}"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ThaiEleHub",
+      "item": "{{ shop.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tours",
+      "item": "{{ shop.url }}/collections/all"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ display_title | json }},
+      "item": "{{ shop.url }}{{ product.url }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this an ethical elephant sanctuary tour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tour is designed around no riding, no shows and no forced interaction. Guests observe, feed or join water time only within the guide's welfare boundaries and the elephants' comfort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is hotel pickup included?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, hotel pickup is included inside the listed {{ pickup_region }} transfer area. Enter your hotel name or full accommodation address during booking so the ThaiEleHub team can confirm the exact arrangement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is this elephant sanctuary tour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is a {{ duration_label | downcase }} experience. The exact return time depends on traffic, weather and elephant-led pacing, and final pickup details are confirmed before the tour."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can children join this tour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Children can usually join, but families should review the itinerary, walking conditions and transfer time before booking. Add a note during checkout if your child needs extra support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I bring?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bring a change of clothes, swimwear or quick-dry clothing, secure sandals, sunscreen, insect repellent, a towel and personal medication."
+      }
+    }
+  ]
+}
 </script>
 
 {% schema %}

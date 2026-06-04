@@ -6,7 +6,7 @@ This file is the safety map for working on the Thaielehub Shopify site from any 
 
 | Purpose | Shopify theme name | Theme ID | Local path | Status |
 | --- | --- | --- | --- | --- |
-| Official live storefront | `thaielehub-live-fixed-2026-06-03` | `191803359603` | `shopify-theme-export` | Live |
+| Official live storefront | `thaielehub-geo-split-header-2026-06-04` | `191849759091` | `shopify-theme-export` | Live |
 | Advenx-style demo only | `Thaielehub Advenx Demo 2026-06-03` | `191801557363` | `shopify-theme-advenx-demo` | Unpublished |
 | Historical backups | Multiple unpublished themes | See `shopify theme list` | N/A | Do not edit unless restoring |
 

@@ -1,0 +1,120 @@
+{% comment %}
+  Renders the desktop header menu split around the centered logo.
+
+  Usage:
+  {% render 'header-split-menu', side: 'left' %}
+  {% render 'header-split-menu', side: 'right' %}
+{% endcomment %}
+
+{%- liquid
+  assign menu_count = section.settings.menu.links.size
+  assign split_after = menu_count | plus: 1 | divided_by: 2
+-%}
+
+<nav class="header__split-menu header__split-menu--{{ side }}" aria-label="{{ 'sections.header.menu' | t }}">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      {%- liquid
+        assign render_link = false
+        if side == 'left' and forloop.index <= split_after
+          assign render_link = true
+        elsif side == 'right' and forloop.index > split_after
+          assign render_link = true
+        endif
+      -%}
+
+      {%- if render_link -%}
+        <li>
+          {%- if link.links != blank -%}
+            <header-menu>
+              <details id="Details-SplitHeaderMenu-{{ side }}-{{ forloop.index }}">
+                <summary
+                  id="SplitHeaderMenu-{{ side }}-{{ link.handle }}"
+                  class="header__menu-item list-menu__item link focus-inset"
+                >
+                  <span
+                    {%- if link.child_active %}
+                      class="header__active-menu-item"
+                    {% endif %}
+                  >
+                    {{- link.title | escape -}}
+                  </span>
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </summary>
+                <ul
+                  id="SplitHeaderMenu-MenuList-{{ side }}-{{ forloop.index }}"
+                  class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                  role="list"
+                  tabindex="-1"
+                >
+                  {%- for childlink in link.links -%}
+                    <li>
+                      {%- if childlink.links == blank -%}
+                        <a
+                          id="SplitHeaderMenu-{{ side }}-{{ link.handle }}-{{ childlink.handle }}"
+                          href="{{ childlink.url }}"
+                          class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                          {% if childlink.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          {{ childlink.title | escape }}
+                        </a>
+                      {%- else -%}
+                        <details id="Details-SplitHeaderSubMenu-{{ side }}-{{ link.handle }}-{{ childlink.handle }}">
+                          <summary
+                            id="SplitHeaderMenu-{{ side }}-{{ link.handle }}-{{ childlink.handle }}"
+                            class="header__menu-item link link--text list-menu__item focus-inset caption-large"
+                          >
+                            <span>{{ childlink.title | escape }}</span>
+                            {{- 'icon-caret.svg' | inline_asset_content -}}
+                          </summary>
+                          <ul
+                            id="SplitHeaderMenu-SubMenuList-{{ side }}-{{ link.handle }}-{{ childlink.handle }}"
+                            class="header__submenu list-menu motion-reduce"
+                          >
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="SplitHeaderMenu-{{ side }}-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </details>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </details>
+            </header-menu>
+          {%- else -%}
+            <a
+              id="SplitHeaderMenu-{{ side }}-{{ link.handle }}"
+              href="{{ link.url }}"
+              class="header__menu-item list-menu__item link link--text focus-inset"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              <span
+                {%- if link.current %}
+                  class="header__active-menu-item"
+                {% endif %}
+              >
+                {{- link.title | escape -}}
+              </span>
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</nav>

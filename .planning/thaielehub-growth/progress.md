@@ -13,3 +13,11 @@
 - Pushed the official live theme `thaielehub-live-fixed-2026-06-03` (#191803359603) successfully.
 - Next:
   - Commit and push Git.
+
+## 2026-06-04
+
+- Uploaded `/Users/ouyowu/Downloads/thaielehub-geo-split-header-theme.zip` through Shopify CLI as a new theme.
+- Fixed the temporary `featured-product` schema header translation reference before upload so theme check had no blocking errors.
+- Published `thaielehub-geo-split-header-2026-06-04` (#191849759091) as the live theme.
+- Synced `shopify-theme-export` to the newly published zip contents so future Codex work targets the current live source.
+- Updated live theme governance and push script defaults from #191803359603 to #191849759091.

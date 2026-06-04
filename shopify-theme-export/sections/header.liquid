@@ -74,6 +74,66 @@
       padding-top: 0.5rem;
     }
   }
+
+
+  @media screen and (min-width: 990px) {
+    .header--split-center {
+      grid-template-areas: 'split-left heading split-right icons';
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+      column-gap: 2.4rem;
+      align-items: center;
+    }
+
+    .header--split-center .header__heading,
+    .header--split-center .header__heading-link {
+      justify-self: center;
+      grid-area: heading;
+    }
+
+    .header--split-center .header__split-menu {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .header--split-center .header__split-menu--left {
+      grid-area: split-left;
+      justify-self: end;
+      justify-content: flex-end;
+    }
+
+    .header--split-center .header__split-menu--right {
+      grid-area: split-right;
+      justify-self: start;
+      justify-content: flex-start;
+    }
+
+    .header--split-center .header__split-menu .list-menu--inline {
+      gap: 0.6rem;
+      flex-wrap: nowrap;
+      justify-content: inherit;
+    }
+
+    .header--split-center .header__split-menu .header__menu-item {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      white-space: nowrap;
+    }
+
+    .header--split-center > .header__inline-menu {
+      display: none;
+    }
+
+    .header--split-center .header__icons {
+      grid-area: icons;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .header__split-menu {
+      display: none;
+    }
+  }
 </style>
 
 {%- style -%}
@@ -136,7 +196,7 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.logo_position == 'middle-center' and section.settings.menu_type_desktop == 'dropdown' and section.settings.menu != blank %} header--split-center{% endif %}{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
@@ -146,6 +206,10 @@
         render 'header-search', input_id: 'Search-In-Modal-1'
       endif
     -%}
+
+    {%- if section.settings.logo_position == 'middle-center' and section.settings.menu_type_desktop == 'dropdown' and section.settings.menu != blank -%}
+      {% render 'header-split-menu', side: 'left' %}
+    {%- endif -%}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -182,7 +246,9 @@
 
     {%- liquid
       if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
+        if section.settings.logo_position == 'middle-center' and section.settings.menu_type_desktop == 'dropdown'
+          render 'header-split-menu', side: 'right'
+        elsif section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
         elsif section.settings.menu_type_desktop != 'drawer'
           render 'header-mega-menu'

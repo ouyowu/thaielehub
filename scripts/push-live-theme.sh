@@ -2,7 +2,7 @@
 set -euo pipefail
 
 STORE="${SHOPIFY_STORE:-thaielehub.myshopify.com}"
-LIVE_THEME_ID="${SHOPIFY_LIVE_THEME_ID:-191803359603}"
+LIVE_THEME_ID="${SHOPIFY_LIVE_THEME_ID:-191849759091}"
 THEME_PATH="shopify-theme-export"
 
 if [[ "${CONFIRM_LIVE_PUSH:-}" != "YES" ]]; then

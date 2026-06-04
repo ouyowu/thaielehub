@@ -18,6 +18,9 @@
 
     {%- assign elehub_page_title = page_title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' -%}
     {%- assign elehub_page_description = page_description | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' -%}
+    {%- if request.page_type == 'index' and elehub_page_description == blank -%}
+      {%- assign elehub_page_description = 'Book ethical elephant sanctuary tours in Thailand with ThaiEleHub. Compare Chiang Mai, Bangkok and Pattaya departures with no riding, no shows and clear hotel pickup.' -%}
+    {%- endif -%}
 
     <title>
       {{ elehub_page_title }}
@@ -26,7 +29,7 @@
       {%- unless elehub_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
+    {% if elehub_page_description != blank %}
       <meta name="description" content="{{ elehub_page_description | escape }}">
     {% endif %}
 
@@ -261,17 +264,6 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'elehub-site.css' | asset_url | stylesheet_tag }}
-    <style>
-      body .gallery-strip,
-      body .selected-gallery {
-        display: none !important;
-        height: 0 !important;
-        min-height: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        overflow: hidden !important;
-      }
-    </style>
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
