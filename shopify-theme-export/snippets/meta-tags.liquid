@@ -5,6 +5,11 @@
   assign og_description = page_description | default: shop.description | default: shop.name
   assign og_title = og_title | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub'
   assign og_description = og_description | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub'
+  assign og_description_normalized = og_description | strip | downcase
+
+  if og_description_normalized == 'thaielehub'
+    assign og_description = 'Book ethical elephant sanctuary tours in Thailand with ThaiEleHub. Compare Chiang Mai, Bangkok and Pattaya departures with no riding, no shows and clear hotel pickup.'
+  endif
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -19,7 +24,7 @@
 <meta property="og:url" content="{{ og_url }}">
 <meta property="og:title" content="{{ og_title | escape }}">
 <meta property="og:type" content="{{ og_type }}">
-<meta property="og:description" content="{{ og_description | escape }}">
+<meta property="og:description" content="{% if og_description contains 'ThaiEleHub' and og_description.size < 20 %}Book ethical elephant sanctuary tours in Thailand with ThaiEleHub. Compare Chiang Mai, Bangkok and Pattaya departures with no riding, no shows and clear hotel pickup.{% else %}{{ og_description | escape }}{% endif %}">
 
 {%- if page_image -%}
   <meta property="og:image" content="http:{{ page_image | image_url }}">
@@ -38,4 +43,4 @@
 {%- endif -%}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
-<meta name="twitter:description" content="{{ og_description | escape }}">
+<meta name="twitter:description" content="{% if og_description contains 'ThaiEleHub' and og_description.size < 20 %}Book ethical elephant sanctuary tours in Thailand with ThaiEleHub. Compare Chiang Mai, Bangkok and Pattaya departures with no riding, no shows and clear hotel pickup.{% else %}{{ og_description | escape }}{% endif %}">

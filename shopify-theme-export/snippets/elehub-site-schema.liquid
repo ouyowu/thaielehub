@@ -1,0 +1,107 @@
+{%- liquid
+  assign elehub_schema_description = 'Thaielehub helps travelers compare and book ethical elephant sanctuary tours in Thailand, including Chiang Mai, Bangkok-departure and Pattaya-departure experiences with no riding, no shows, clear itineraries and hotel pickup guidance.'
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TravelAgency",
+      "@id": "{{ shop.url }}/#organization",
+      "name": "Thaielehub",
+      "alternateName": "ThaiEleHub",
+      "url": "{{ shop.url }}",
+      "description": {{ elehub_schema_description | json }},
+      "telephone": "+66650208666",
+      "email": "ouyowu@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "8 Rachadamnoen Rd, Si Phum",
+        "addressLocality": "Mueang Chiang Mai District",
+        "addressRegion": "Chiang Mai",
+        "postalCode": "50200",
+        "addressCountry": "TH"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Chiang Mai" },
+        { "@type": "City", "name": "Bangkok" },
+        { "@type": "City", "name": "Pattaya" },
+        { "@type": "AdministrativeArea", "name": "Chonburi" },
+        { "@type": "Country", "name": "Thailand" }
+      ],
+      "knowsAbout": [
+        "ethical elephant sanctuary Thailand",
+        "Chiang Mai elephant sanctuary",
+        "Bangkok elephant sanctuary day trip",
+        "Pattaya elephant sanctuary",
+        "no riding elephant sanctuary",
+        "hotel pickup elephant sanctuary tours"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Chiang Mai ethical elephant sanctuary tours",
+          "itemOffered": { "@type": "TouristTrip", "name": "Chiang Mai Elephant Sanctuary Encounter" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Bangkok departure elephant sanctuary day trips",
+          "itemOffered": { "@type": "TouristTrip", "name": "Chonburi Elephant Sanctuary from Bangkok" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Pattaya departure elephant sanctuary tours",
+          "itemOffered": { "@type": "TouristTrip", "name": "Chonburi Elephant Sanctuary from Pattaya" }
+        }
+      ],
+      "sameAs": [
+        "https://www.tripadvisor.com/Attraction_Review-g293917-d23935719-Reviews-Living_Green_Elephant_Sanctuary-Chiang_Mai.html"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ shop.url }}/#website",
+      "name": "Thaielehub",
+      "url": "{{ shop.url }}",
+      "publisher": { "@id": "{{ shop.url }}/#organization" },
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "{{ shop.url }}/#site-faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Where can travelers book Thaielehub elephant sanctuary tours?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thaielehub offers ethical elephant sanctuary experiences for travelers staying in Chiang Mai, Bangkok and Pattaya, with Chonburi tours serving Bangkok and Pattaya departures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do Thaielehub tours include elephant riding or shows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Thaielehub positions its elephant sanctuary experiences around no riding, no shows and elephant-led encounters focused on observation, feeding, nature walks and welfare-first guest education."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can guests check hotel pickup information before booking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Product pages explain pickup areas for Chiang Mai, Bangkok and Pattaya, and the booking form lets guests enter a hotel name or full accommodation address. Bangkok tours also include a meeting point option when available."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>

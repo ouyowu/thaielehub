@@ -60,6 +60,11 @@ fetch_page bangkok '/products/chonburi-ethical-half-day-morning-bangkok-departur
 fetch_page pattaya '/products/chonburi-ethical-half-day-morning-pattaya-departure'
 
 html_files=("$TMP_DIR"/*.html)
+visible_text="$TMP_DIR/visible-text.txt"
+
+for html_file in "${html_files[@]}"; do
+  perl -0777 -pe 's#<script\b[^>]*>.*?</script>##gis; s#<style\b[^>]*>.*?</style>##gis; s#<[^>]+># #g' "$html_file"
+done > "$visible_text"
 
 if rg -q 'â|â€|Ã.|\\uFFFD' "${html_files[@]}"; then
   fail 'Possible mojibake detected in public HTML'
@@ -67,13 +72,13 @@ else
   pass 'No common mojibake markers detected'
 fi
 
-if sed -E 's/<[^>]+>/ /g' "${html_files[@]}" | rg -qi 'living green|big boy'; then
+if rg -qi 'living green|big boy' "$visible_text"; then
   fail 'Legacy brand text is still visible in fetched page text'
 else
   pass 'No visible Living Green or Big Boy text detected'
 fi
 
-if sed -E 's/<[^>]+>/ /g' "${html_files[@]}" | rg -qi 'book now via whatsapp|book via whatsapp'; then
+if rg -qi 'book now via whatsapp|book via whatsapp' "$visible_text"; then
   fail 'WhatsApp booking CTA is still visible'
 else
   pass 'No WhatsApp booking CTA detected'
