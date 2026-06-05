@@ -1,4 +1,6 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'collapsible-content.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
@@ -42,8 +44,15 @@
   endif
 
   assign location_label = 'Chiang Mai'
+  assign pickup_region = 'Chiang Mai'
   if product.handle contains 'chonburi'
     assign location_label = 'Chonburi'
+    assign pickup_region = 'Chonburi'
+  endif
+  if product.handle contains 'bangkok-departure'
+    assign pickup_region = 'Bangkok'
+  elsif product.handle contains 'pattaya-departure'
+    assign pickup_region = 'Pattaya'
   endif
 
   assign duration_label = 'Half-day'
@@ -552,6 +561,71 @@
     overflow: hidden;
   }
 
+  .ele-native-accordion {
+    margin: 0;
+    border: 1px solid rgba(45, 80, 22, 0.14);
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+  }
+
+  .ele-native-accordion + .ele-native-accordion {
+    margin-top: 12px;
+  }
+
+  .ele-native-accordion summary {
+    min-height: 64px;
+    padding: 18px 22px;
+  }
+
+  .ele-native-accordion .accordion__title {
+    max-width: none;
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .ele-native-accordion .accordion__content {
+    margin-bottom: 0;
+    padding: 0 22px 22px;
+    color: var(--mid);
+  }
+
+  .ele-native-accordion .accordion__content p,
+  .ele-native-accordion .accordion__content li {
+    color: #383838;
+    font-size: 16px;
+  }
+
+  .ele-native-accordion .accordion__content ul {
+    display: grid;
+    gap: 10px;
+    margin: 14px 0 0 20px;
+    padding: 0;
+  }
+
+  .ele-transfer-zones {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .ele-transfer-zone {
+    padding: 15px;
+    border: 1px solid rgba(45, 80, 22, 0.12);
+    border-radius: 16px;
+    background: #f7f5f2;
+  }
+
+  .ele-transfer-zone strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--green);
+    font-size: 14px;
+  }
+
   .ele-tab summary {
     min-height: 64px;
     display: flex;
@@ -685,6 +759,20 @@
       flex: 0 0 82%;
       height: 240px;
       scroll-snap-align: start;
+    }
+
+    .ele-native-accordion {
+      border-radius: 18px;
+      background: rgba(255,255,255,0.95);
+    }
+
+    .ele-native-accordion summary {
+      min-height: 58px;
+      padding: 16px 18px;
+    }
+
+    .ele-native-accordion .accordion__content {
+      padding: 0 18px 18px;
     }
   }
 </style>
@@ -857,16 +945,61 @@
 
     <section class="ele-content" id="experience">
       <div class="ele-wrap ele-content__grid">
-        <article class="ele-description ele-tabs" id="details">
-          <details class="ele-tab" open>
-            <summary>Itinerary</summary>
-            <div class="ele-tab__body">
+        <article class="ele-description ele-tabs collapsible-content collapsible-row-layout" id="details">
+          <details class="accordion ele-native-accordion" open data-mobile-collapse>
+            <summary>
+              <div class="summary__title">
+                <h2 class="accordion__title inline-richtext h4">Itinerary & tour details</h2>
+              </div>
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </summary>
+            <div class="accordion__content rte">
               {{ product.description }}
             </div>
           </details>
-          <details class="ele-tab">
-            <summary>What to Bring</summary>
-            <div class="ele-tab__body">
+          <details class="accordion ele-native-accordion" open data-mobile-collapse>
+            <summary>
+              <div class="summary__title">
+                <h2 class="accordion__title inline-richtext h4">Pickup & transfer zone</h2>
+              </div>
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </summary>
+            <div class="accordion__content rte">
+              {% if pickup_region == 'Chiang Mai' %}
+                <p>Complimentary pickup and drop-off are available for accommodation within a 5 km radius of Chiang Mai Old City. Locations outside the free radius may require a small surcharge or private transfer confirmation.</p>
+                <div class="ele-transfer-zones">
+                  <div class="ele-transfer-zone"><strong>Free pickup</strong>Hotels and accommodation within 5 km of Chiang Mai Old City.</div>
+                  <div class="ele-transfer-zone"><strong>Outside the free radius</strong>Our team confirms any surcharge before your tour date.</div>
+                  <div class="ele-transfer-zone"><strong>Special locations</strong>Airbnb, villas and remote addresses are accepted; enter the full address during booking.</div>
+                </div>
+              {% elsif pickup_region == 'Bangkok' %}
+                <p>Bangkok transfers are available from designated pickup zones, with Ekkamai Bus Terminal as the clean meeting-point option for guests outside the complimentary area.</p>
+                <div class="ele-transfer-zones">
+                  <div class="ele-transfer-zone"><strong>Zone 1</strong>Bo Bae, Khao San, Yaowarat and Sathorn.</div>
+                  <div class="ele-transfer-zone"><strong>Zone 2</strong>Phaya Thai, Huai Khwang, Sukhumvit, Lumphini, Siam, Silom and Suan Luang.</div>
+                  <div class="ele-transfer-zone"><strong>Zone 3</strong>Bang Na and Suvarnabhumi.</div>
+                  <div class="ele-transfer-zone"><strong>Outside zones</strong>Use the meeting point or request a paid transfer confirmation.</div>
+                </div>
+              {% elsif pickup_region == 'Pattaya' %}
+                <p>Pattaya transfers are available from the main city areas, with small surcharges for locations farther south or outside the core pickup route.</p>
+                <div class="ele-transfer-zones">
+                  <div class="ele-transfer-zone"><strong>Free pickup</strong>North, Central and South Pattaya hotels.</div>
+                  <div class="ele-transfer-zone"><strong>Jomtien</strong>Small transfer surcharge may apply.</div>
+                  <div class="ele-transfer-zone"><strong>Nong Nooch Garden area</strong>Additional transfer confirmation required.</div>
+                </div>
+              {% else %}
+                <p>Enter your hotel name, Airbnb or complete address during booking. Our team will confirm the exact pickup arrangement before your tour.</p>
+              {% endif %}
+            </div>
+          </details>
+          <details class="accordion ele-native-accordion" open data-mobile-collapse>
+            <summary>
+              <div class="summary__title">
+                <h2 class="accordion__title inline-richtext h4">Packing guidelines</h2>
+              </div>
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </summary>
+            <div class="accordion__content rte">
               <ul>
                 <li>Comfortable change of clothes</li>
                 <li>Swimwear or quick-dry clothes for river or waterfall activities</li>
@@ -876,9 +1009,14 @@
               </ul>
             </div>
           </details>
-          <details class="ele-tab">
-            <summary>Included</summary>
-            <div class="ele-tab__body">
+          <details class="accordion ele-native-accordion" open data-mobile-collapse>
+            <summary>
+              <div class="summary__title">
+                <h2 class="accordion__title inline-richtext h4">Included</h2>
+              </div>
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </summary>
+            <div class="accordion__content rte">
               <ul>
                 <li>Free all-inclusive accident insurance</li>
                 <li>Free professional photography service, digitally uploaded within 72 hours</li>
@@ -929,6 +1067,7 @@
     const hiddenInput = root.querySelector('#EleVariantInput-{{ section.id }}');
     const price = root.querySelector('#ElePrice-{{ section.id }}');
     const radios = root.querySelectorAll('input[name="ele_variant_{{ section.id }}"]');
+    const mobileCollapse = window.matchMedia('(max-width: 768px)');
 
     radios.forEach((radio) => {
       radio.addEventListener('change', () => {
@@ -937,6 +1076,19 @@
         if (price && radio.dataset.price) price.textContent = radio.dataset.price;
       });
     });
+
+    const collapseMobileAccordions = () => {
+      root.querySelectorAll('[data-mobile-collapse]').forEach((accordion) => {
+        if (mobileCollapse.matches) {
+          accordion.removeAttribute('open');
+        } else {
+          accordion.setAttribute('open', '');
+        }
+      });
+    };
+
+    collapseMobileAccordions();
+    mobileCollapse.addEventListener?.('change', collapseMobileAccordions);
   })();
 </script>
 
