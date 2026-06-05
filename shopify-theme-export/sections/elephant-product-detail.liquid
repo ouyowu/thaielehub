@@ -729,6 +729,11 @@
             <span>From</span>
             <strong id="ElePrice-{{ section.id }}">{{ product.selected_or_first_available_variant.price | money }}</strong>
           </div>
+          <div class="sym-mobile-checkout-steps" aria-label="One minute mobile checkout">
+            <span>1 · Details</span>
+            <span>2 · Pickup</span>
+            <span>3 · Apple Pay / express pay</span>
+          </div>
 
           <div class="ele-meta">
             <div class="ele-meta__item">
@@ -756,6 +761,14 @@
 
             <div class="ele-booking-fields" aria-label="Booking details">
               <div class="ele-field">
+                <label for="GuestName-{{ section.id }}">Guest name</label>
+                <input id="GuestName-{{ section.id }}" type="text" name="properties[Guest name]" autocomplete="name" required>
+              </div>
+              <div class="ele-field">
+                <label for="GuestPhone-{{ section.id }}">Phone</label>
+                <input id="GuestPhone-{{ section.id }}" type="tel" name="properties[Phone number]" autocomplete="tel" required>
+              </div>
+              <div class="ele-field">
                 <label for="BookingDate-{{ section.id }}">Tour date</label>
                 <input id="BookingDate-{{ section.id }}" type="date" name="properties[Tour date]" required>
               </div>
@@ -775,6 +788,14 @@
               <div class="ele-field">
                 <label for="Children-{{ section.id }}">Children</label>
                 <input id="Children-{{ section.id }}" type="number" name="properties[Children]" min="0" value="0">
+              </div>
+              <div class="ele-field">
+                <label for="PickupHotel-{{ section.id }}">Pickup hotel or address</label>
+                <input id="PickupHotel-{{ section.id }}" type="text" name="properties[Pickup hotel or address]" placeholder="Hotel name, Airbnb or villa address" required>
+              </div>
+              <div class="ele-field">
+                <label for="GuestEmail-{{ section.id }}">Email</label>
+                <input id="GuestEmail-{{ section.id }}" type="email" name="properties[Email]" autocomplete="email">
               </div>
             </div>
 
@@ -800,7 +821,7 @@
               </div>
             {%- endif -%}
 
-            <div class="product-form__buttons">
+            <div class="product-form__buttons" aria-label="Express checkout. Apple Pay appears first when available on this device.">
               <button
                 type="submit"
                 name="add"

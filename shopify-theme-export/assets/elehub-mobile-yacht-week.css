@@ -1,0 +1,387 @@
+/*
+  ThaiEleHub mobile conversion layer.
+  Desktop is intentionally untouched: every rule is scoped to smartphone widths.
+*/
+.sym-mobile-checkout-steps {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  :root {
+    --teh-app-ink: #f7f1df;
+    --teh-app-muted: rgba(247, 241, 223, 0.68);
+    --teh-app-soft: rgba(247, 241, 223, 0.1);
+    --teh-app-black: #020605;
+    --teh-app-panel: #07130e;
+    --teh-app-green: #b9e56a;
+    --teh-app-gold: #c7a15c;
+  }
+
+  body.template-product {
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at 30% -10%, rgba(185, 229, 106, 0.22), transparent 28rem),
+      linear-gradient(180deg, #020605 0%, #07130e 48%, #020605 100%) !important;
+    color: var(--teh-app-ink);
+  }
+
+  body.template-product .shopify-section-group-header-group,
+  body.template-product .shopify-section-group-footer-group,
+  body.template-product .elehub-editorial-header,
+  body.template-product .elehub-editorial-footer,
+  body.template-product .sym-nav,
+  body.template-product .ele-nav {
+    display: none !important;
+  }
+
+  body.template-product #MainContent {
+    background: transparent !important;
+  }
+
+  body.template-product .sym-tour,
+  body.template-product .ele-tour {
+    min-height: 100vh;
+    padding-bottom: calc(138px + env(safe-area-inset-bottom));
+    background: transparent !important;
+    color: var(--teh-app-ink) !important;
+    font-family: Georgia, "Times New Roman", Times, serif !important;
+  }
+
+  body.template-product .sym-wrap,
+  body.template-product .ele-wrap,
+  body.template-product .ele-nav__inner {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  body.template-product .sym-hero,
+  body.template-product .ele-hero {
+    padding: 0 !important;
+  }
+
+  body.template-product .sym-hero__grid,
+  body.template-product .ele-hero__grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  body.template-product .sym-stack {
+    position: relative;
+    display: flex !important;
+    gap: 0 !important;
+    width: 100vw;
+    min-height: 66svh;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  body.template-product .sym-stack::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.template-product .sym-stack__image,
+  body.template-product .sym-stack__image:first-child {
+    flex: 0 0 100vw !important;
+    width: 100vw !important;
+    height: 66svh !important;
+    min-height: 520px;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    scroll-snap-align: start;
+    background: #0d1711;
+  }
+
+  body.template-product .sym-stack__image::after,
+  body.template-product .ele-hero__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(2, 6, 5, 0.12) 38%, rgba(2, 6, 5, 0.88) 100%),
+      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.16), transparent 18rem);
+  }
+
+  body.template-product .sym-stack__image img,
+  body.template-product .ele-hero__media img {
+    object-fit: cover !important;
+    object-position: center center !important;
+    filter: saturate(0.98) contrast(1.04);
+  }
+
+  body.template-product .sym-stack__label {
+    left: 18px !important;
+    bottom: 18px !important;
+    z-index: 2;
+    border: 1px solid rgba(247, 241, 223, 0.2);
+    background: rgba(2, 6, 5, 0.42) !important;
+    color: var(--teh-app-ink) !important;
+    backdrop-filter: blur(18px);
+  }
+
+  body.template-product .ele-hero__media {
+    width: 100vw;
+    min-height: 66svh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  body.template-product .ele-hero__caption {
+    bottom: 132px !important;
+    z-index: 2;
+  }
+
+  body.template-product .sym-book,
+  body.template-product .ele-book {
+    position: relative !important;
+    top: auto !important;
+    z-index: 5;
+    width: calc(100vw - 24px);
+    margin: -92px auto 0 !important;
+    padding: 18px !important;
+    border: 1px solid rgba(247, 241, 223, 0.14) !important;
+    border-radius: 28px !important;
+    background:
+      linear-gradient(180deg, rgba(13, 29, 21, 0.96), rgba(5, 13, 9, 0.98)) !important;
+    box-shadow: 0 -24px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.09) !important;
+    color: var(--teh-app-ink) !important;
+    backdrop-filter: blur(18px);
+  }
+
+  body.template-product .sym-eyebrow,
+  body.template-product .ele-vendor,
+  body.template-product .ele-pill,
+  body.template-product .sym-kicker,
+  body.template-product .sym-mobile-app-kicker {
+    color: var(--teh-app-gold) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+  }
+
+  body.template-product .sym-title,
+  body.template-product .ele-title {
+    margin-top: 8px !important;
+    color: var(--teh-app-ink) !important;
+    font-size: clamp(34px, 10.5vw, 48px) !important;
+    line-height: 0.94 !important;
+    letter-spacing: -0.065em !important;
+  }
+
+  body.template-product .sym-subline,
+  body.template-product .ele-subline,
+  body.template-product .sym-fast-note,
+  body.template-product .sym-note,
+  body.template-product .ele-note {
+    color: var(--teh-app-muted) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  body.template-product .sym-mobile-checkout-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin: 14px 0 12px;
+  }
+
+  body.template-product .sym-mobile-checkout-steps span {
+    display: grid;
+    align-content: center;
+    min-height: 54px;
+    padding: 9px 8px;
+    border: 1px solid rgba(247, 241, 223, 0.11);
+    border-radius: 17px;
+    background: rgba(247, 241, 223, 0.06);
+    color: rgba(247, 241, 223, 0.74);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  body.template-product .sym-price,
+  body.template-product .ele-price {
+    margin: 15px 0 !important;
+    padding: 14px 0 !important;
+    border-color: rgba(247, 241, 223, 0.12) !important;
+  }
+
+  body.template-product .sym-price span,
+  body.template-product .ele-price span {
+    color: rgba(247, 241, 223, 0.52) !important;
+  }
+
+  body.template-product .sym-price strong,
+  body.template-product .ele-price strong {
+    color: var(--teh-app-green) !important;
+    font-size: 30px !important;
+  }
+
+  body.template-product .sym-fields,
+  body.template-product .ele-booking-fields {
+    grid-template-columns: 1fr !important;
+    gap: 9px !important;
+  }
+
+  body.template-product .sym-field label,
+  body.template-product .ele-field label {
+    color: rgba(247, 241, 223, 0.55) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
+  }
+
+  body.template-product .sym-field input,
+  body.template-product .sym-field select,
+  body.template-product .sym-field textarea,
+  body.template-product .ele-field input,
+  body.template-product .ele-field select {
+    min-height: 50px !important;
+    border: 1px solid rgba(247, 241, 223, 0.12) !important;
+    border-radius: 16px !important;
+    background: rgba(247, 241, 223, 0.08) !important;
+    color: var(--teh-app-ink) !important;
+    font: 600 16px/1.2 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  body.template-product .sym-field input::placeholder,
+  body.template-product .sym-field textarea::placeholder {
+    color: rgba(247, 241, 223, 0.36) !important;
+  }
+
+  body.template-product .sym-pickup-option span,
+  body.template-product .sym-variant span,
+  body.template-product .ele-variant__box,
+  body.template-product .sym-booking-summary,
+  body.template-product .sym-optional {
+    border-color: rgba(247, 241, 223, 0.12) !important;
+    background: rgba(247, 241, 223, 0.07) !important;
+    color: var(--teh-app-ink) !important;
+  }
+
+  body.template-product .sym-pickup-option input:checked + span,
+  body.template-product .sym-variant input:checked + span,
+  body.template-product .ele-variant input:checked + .ele-variant__box {
+    border-color: rgba(185, 229, 106, 0.62) !important;
+    background: rgba(185, 229, 106, 0.13) !important;
+  }
+
+  body.template-product .sym-pay,
+  body.template-product .ele-actions .product-form__buttons {
+    position: sticky;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    z-index: 95;
+    margin-top: 14px !important;
+    padding: 9px !important;
+    border: 1px solid rgba(247, 241, 223, 0.16);
+    border-radius: 22px;
+    background: rgba(2, 6, 5, 0.78);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(20px);
+  }
+
+  body.template-product .sym-pay .shopify-payment-button__button,
+  body.template-product .ele-actions .shopify-payment-button__button,
+  body.template-product .ele-actions .product-form__submit {
+    min-height: 58px !important;
+    border: 0 !important;
+    border-radius: 17px !important;
+    background: linear-gradient(135deg, var(--teh-app-green), #fff0a0) !important;
+    color: #07130e !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 950 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 16px 36px rgba(185, 229, 106, 0.2) !important;
+  }
+
+  body.template-product .sym-pay .shopify-payment-button__more-options {
+    color: rgba(247, 241, 223, 0.7) !important;
+    font-size: 12px !important;
+  }
+
+  body.template-product .ele-actions .product-form__submit {
+    order: 2;
+    opacity: 0.78;
+  }
+
+  body.template-product .ele-actions .shopify-payment-button {
+    order: 1;
+  }
+
+  body.template-product .sym-trust,
+  body.template-product .ele-trust {
+    margin-top: 14px !important;
+    border: 1px solid rgba(247, 241, 223, 0.1);
+    border-radius: 18px !important;
+    background: rgba(247, 241, 223, 0.06) !important;
+    color: rgba(247, 241, 223, 0.78) !important;
+  }
+
+  body.template-product .sym-mobile-bookbar {
+    display: none !important;
+  }
+
+  body.template-product .sym-section,
+  body.template-product .ele-content,
+  body.template-product .ele-gallery {
+    padding: 54px 12px !important;
+    background: transparent !important;
+  }
+
+  body.template-product .sym-intro,
+  body.template-product .sym-intro p,
+  body.template-product .sym-faq p,
+  body.template-product .sym-itinerary__note {
+    color: var(--teh-app-muted) !important;
+  }
+
+  body.template-product .sym-heading,
+  body.template-product .sym-highlight__copy h3,
+  body.template-product .sym-extra__copy h3,
+  body.template-product .sym-itinerary__copy h3,
+  body.template-product .sym-faq summary,
+  body.template-product .ele-description h2,
+  body.template-product .ele-description h3,
+  body.template-product .ele-card h2 {
+    color: var(--teh-app-ink) !important;
+  }
+
+  body.template-product .sym-highlight,
+  body.template-product .sym-extra,
+  body.template-product .sym-itinerary__item,
+  body.template-product .sym-faq details,
+  body.template-product .ele-description,
+  body.template-product .ele-card,
+  body.template-product .ele-tab {
+    border-color: rgba(247, 241, 223, 0.12) !important;
+    background: rgba(247, 241, 223, 0.065) !important;
+    color: var(--teh-app-ink) !important;
+    box-shadow: none !important;
+  }
+
+  body.template-product .sym-video-cinema .video-section,
+  body.template-product .video-section {
+    width: 100vw !important;
+    padding: 0 !important;
+  }
+
+  body.template-product .video-section__media,
+  body.template-product .video-section__poster {
+    overflow: hidden;
+    border-radius: 0 !important;
+  }
+
+  body.template-product .video-section__poster img,
+  body.template-product .video-section__media video {
+    min-height: 68svh;
+    object-fit: cover;
+  }
+}

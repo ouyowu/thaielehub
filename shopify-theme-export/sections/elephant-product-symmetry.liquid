@@ -336,6 +336,11 @@
           <p class="sym-subline">{{ location_label }} · {{ duration_label }} · No riding · No shows</p>
           <div class="sym-price"><span>From</span><strong>{{ product.selected_or_first_available_variant.price | money }}</strong></div>
           <p class="sym-fast-note">1-minute booking: add your contact, tour date and pickup details, then continue to secure payment.</p>
+          <div class="sym-mobile-checkout-steps" aria-label="One minute mobile checkout">
+            <span>1 · Details</span>
+            <span>2 · Pickup</span>
+            <span>3 · Apple Pay / express pay</span>
+          </div>
 
           {%- form 'product', product, id: product_form_id -%}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="SymVariant-{{ section.id }}">
@@ -369,7 +374,7 @@
                 {%- endfor -%}
               </div>
             {%- endif -%}
-            <div class="sym-pay">{{ form | payment_button }}</div>
+            <div class="sym-pay" id="SymExpressPay-{{ section.id }}" aria-label="Express checkout. Apple Pay appears here when available on this device.">{{ form | payment_button }}</div>
           {%- endform -%}
 
           <div class="sym-trust">
