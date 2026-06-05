@@ -319,6 +319,11 @@
 {% render 'elehub-editorial-header' %}
 
 <div class="sym-tour">
+  <div class="mobile-only-sticky-cta" aria-label="Mobile instant booking bar">
+    <button class="mobile-action-button" type="button" data-mobile-instant-book>
+      Instant book with express pay
+    </button>
+  </div>
   <div class="sym-mobile-bookbar"><span>Ready to reserve your elephant experience?</span><a href="#book">Book This Tour</a></div>
   <main>
     <section class="sym-hero">
@@ -519,6 +524,14 @@
     if (tourDateInput) tourDateInput.min = new Date().toISOString().split('T')[0];
     updatePickupOption();
     updateBookingSummary();
+
+    document.querySelector('[data-mobile-instant-book]')?.addEventListener('click', () => {
+      const expressPay = document.querySelector('#SymExpressPay-{{ section.id }}');
+      const bookingPanel = document.querySelector('#book');
+      (expressPay || bookingPanel)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      expressPay?.classList.add('sym-pay--pulse');
+      window.setTimeout(() => expressPay?.classList.remove('sym-pay--pulse'), 1300);
+    });
 
   })();
 </script>
