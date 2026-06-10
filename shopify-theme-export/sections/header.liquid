@@ -80,7 +80,7 @@
     .header--split-center {
       grid-template-areas: 'split-left heading split-right icons';
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
-      column-gap: 2.4rem;
+      column-gap: clamp(2rem, 3vw, 5.2rem);
       align-items: center;
     }
 
@@ -115,9 +115,20 @@
     }
 
     .header--split-center .header__split-menu .header__menu-item {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding-left: clamp(0.8rem, 0.8vw, 1.6rem);
+      padding-right: clamp(0.8rem, 0.8vw, 1.6rem);
       white-space: nowrap;
+    }
+
+    .header--split-center .header__heading-logo-wrapper {
+      width: clamp(130px, 10vw, 180px);
+    }
+
+    .header--split-center .header__heading-logo {
+      display: block;
+      width: 100%;
+      max-height: 72px;
+      object-fit: contain;
     }
 
     .header--split-center > .header__inline-menu {
@@ -132,6 +143,15 @@
   @media screen and (max-width: 989px) {
     .header__split-menu {
       display: none;
+    }
+
+    .header__heading-logo-wrapper {
+      width: min(150px, 42vw);
+    }
+
+    .header__heading-logo {
+      max-height: 62px;
+      object-fit: contain;
     }
   }
 </style>
@@ -196,22 +216,28 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.logo_position == 'middle-center' and section.settings.menu_type_desktop == 'dropdown' and section.settings.menu != blank %} header--split-center{% endif %}{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  {%- liquid
+    assign use_split_header = false
+    if section.settings.menu != blank and section.settings.menu_type_desktop == 'dropdown'
+      assign use_split_header = true
+    endif
+  -%}
+  <header class="header header--{% if use_split_header %}middle-center{% else %}{{ section.settings.logo_position }}{% endif %} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if use_split_header %} header--split-center{% endif %}{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
       endif
 
-      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
+      if section.settings.logo_position == 'top-center' and use_split_header == false or section.settings.menu == blank
         render 'header-search', input_id: 'Search-In-Modal-1'
       endif
     -%}
 
-    {%- if section.settings.logo_position == 'middle-center' and section.settings.menu_type_desktop == 'dropdown' and section.settings.menu != blank -%}
+    {%- if use_split_header -%}
       {% render 'header-split-menu', side: 'left' %}
     {%- endif -%}
 
-    {%- if section.settings.logo_position != 'middle-center' -%}
+    {%- if use_split_header == false and section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
       {%- endif -%}
@@ -236,7 +262,16 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <div class="header__heading-logo-wrapper">
+            <img
+              src="{{ 'thaielehub-logo.png' | asset_url }}"
+              alt="ThaiEleHub Ethical Elephant Encounters"
+              class="header__heading-logo motion-reduce"
+              width="180"
+              height="145"
+              loading="eager"
+            >
+          </div>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -246,7 +281,7 @@
 
     {%- liquid
       if section.settings.menu != blank
-        if section.settings.logo_position == 'middle-center' and section.settings.menu_type_desktop == 'dropdown'
+        if use_split_header
           render 'header-split-menu', side: 'right'
         elsif section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
@@ -256,7 +291,7 @@
       endif
     %}
 
-    {%- if section.settings.logo_position == 'middle-center' -%}
+    {%- if use_split_header or section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
       {%- endif -%}
@@ -281,7 +316,16 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <div class="header__heading-logo-wrapper">
+            <img
+              src="{{ 'thaielehub-logo.png' | asset_url }}"
+              alt="ThaiEleHub Ethical Elephant Encounters"
+              class="header__heading-logo motion-reduce"
+              width="180"
+              height="145"
+              loading="eager"
+            >
+          </div>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}

@@ -405,12 +405,125 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .slide-text{display:-webkit-box!important;overflow:hidden!important;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   .tours-section{padding-top:42px!important}
   .tours-header .sec-body,
-  .tour-desc,
   .tour-meta{display:none!important}
-  .tour-card{padding:12px!important;border-radius:22px!important}
+  .tour-desc{
+    display:-webkit-box!important;
+    margin:8px 0 10px!important;
+    color:#34422f!important;
+    font-size:13px!important;
+    font-weight:600!important;
+    line-height:1.48!important;
+    overflow:hidden!important;
+    -webkit-line-clamp:3!important;
+    -webkit-box-orient:vertical!important;
+  }
+  .tour-card{
+    padding:12px!important;
+    border-radius:22px!important;
+    background:#fffaf0!important;
+    border:1px solid rgba(30,58,15,.12)!important;
+    box-shadow:0 10px 28px rgba(30,58,15,.1)!important;
+  }
   .tour-img{border-radius:22px!important;aspect-ratio:4/3.6!important}
-  .tour-info{padding:12px!important}
-  .tour-name{font-size:22px!important;line-height:1!important}
+  .tour-info{
+    padding:14px 12px 12px!important;
+    margin-top:10px!important;
+    border-radius:20px!important;
+    background:#fffdf7!important;
+    color:#172111!important;
+  }
+  .tour-info::before{
+    background:#2d5016!important;
+    color:#fff!important;
+    border-radius:999px!important;
+  }
+  .tour-cat{
+    color:#6f5a2e!important;
+    font-weight:800!important;
+  }
+  .tour-name{
+    color:#13220d!important;
+    font-size:22px!important;
+    font-weight:800!important;
+    line-height:1.08!important;
+    letter-spacing:-.01em!important;
+    text-shadow:none!important;
+  }
+  .tour-incl{
+    background:#eef4e8!important;
+    color:#1e3a0f!important;
+    font-weight:700!important;
+  }
+  .tour-includes{
+    display:flex!important;
+    gap:5px!important;
+    margin:8px 0 10px!important;
+    overflow-x:auto!important;
+    flex-wrap:nowrap!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none!important;
+  }
+  .tour-includes::-webkit-scrollbar{display:none!important}
+  .tour-incl{
+    flex:0 0 auto!important;
+    border-radius:999px!important;
+    padding:5px 9px!important;
+    font-size:10px!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+  .tour-foot{
+    align-items:stretch!important;
+    gap:10px!important;
+    padding:12px!important;
+    margin-top:12px!important;
+    border:1px solid rgba(200,169,110,.45)!important;
+    border-radius:18px!important;
+    background:#fff7e8!important;
+    box-shadow:0 8px 22px rgba(30,58,15,.08)!important;
+  }
+  .tour-foot > div:first-child{min-width:0!important}
+  .tour-price{
+    display:inline-flex!important;
+    align-items:baseline!important;
+    gap:5px!important;
+    padding:5px 9px!important;
+    border-radius:999px!important;
+    background:#1e3a0f!important;
+    color:#fff!important;
+    font-size:24px!important;
+    font-weight:700!important;
+    line-height:1!important;
+    box-shadow:0 4px 12px rgba(30,58,15,.18)!important;
+  }
+  .tour-price span{
+    color:#f4dfb7!important;
+    font-size:11px!important;
+    font-weight:700!important;
+    letter-spacing:.08em!important;
+    text-transform:uppercase!important;
+  }
+  .tour-foot > div:first-child > span:not(.tour-price){
+    display:block!important;
+    margin-top:7px!important;
+    color:#2f3b2c!important;
+    font-size:12px!important;
+    font-weight:700!important;
+    line-height:1.35!important;
+  }
+  .tour-dur{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-width:86px!important;
+    padding:8px 10px!important;
+    border-radius:14px!important;
+    background:#ffffff!important;
+    color:#1e3a0f!important;
+    border:1px solid rgba(30,58,15,.14)!important;
+    font-weight:800!important;
+    text-align:center!important;
+  }
   .tour-details{min-height:44px!important;margin-top:10px!important}
   .faq-section{display:block!important;padding-top:24px!important}
   .faq-section .sec-body,

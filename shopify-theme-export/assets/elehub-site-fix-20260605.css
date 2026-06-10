@@ -49,9 +49,11 @@ nav a {
   font-weight: 500;
 }
 
-/* ThaiEleHub header restore 2026-06-05b */
 .shopify-section-group-header-group,
-.shopify-section-group-footer-group,
+.shopify-section-group-footer-group {
+  display: none !important;
+}
+
 body .section-header.shopify-section-group-header-group,
 body .announcement-bar-section.shopify-section-group-header-group {
   display: none !important;
@@ -496,21 +498,6 @@ body .announcement-bar-section.shopify-section-group-header-group {
   list-style: none;
 }
 
-.elehub-editorial-footer__col li {
-  color: rgba(255,255,255,.62);
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.elehub-editorial-footer__col li strong {
-  display: block;
-  color: #fff;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.25;
-}
-
 .elehub-editorial-footer__col a {
   font-size: 13px;
 }
@@ -590,145 +577,5 @@ body .announcement-bar-section.shopify-section-group-header-group {
 
   .elehub-editorial-footer__top > div:first-child {
     grid-column: 1 / -1;
-  }
-}
-
-/* Mobile homepage app layer 2026-06-05. Kept here because cached home HTML loads elehub-site.css first. */
-@media screen and (max-width: 749px) {
-  body:has(#MainContent .hero) {
-    overflow-x: hidden;
-    padding-bottom: calc(92px + env(safe-area-inset-bottom)) !important;
-    background: radial-gradient(circle at 22% -8%, rgba(185, 229, 106, 0.2), transparent 22rem), linear-gradient(180deg, #020605 0%, #07130e 48%, #020605 100%) !important;
-    color: #f7f1df !important;
-  }
-  body:has(#MainContent .hero) .announce { position:absolute!important; inset:0 0 auto 0!important; z-index:40!important; min-height:34px!important; padding:8px 12px!important; border:0!important; background:rgba(2,6,5,.52)!important; color:rgba(247,241,223,.78)!important; backdrop-filter:blur(16px); }
-  body:has(#MainContent .hero) .nav-wrap { position:absolute!important; top:34px!important; right:0!important; left:0!important; z-index:45!important; border:0!important; background:transparent!important; }
-  body:has(#MainContent .hero) .nav { min-height:70px!important; padding:0 18px!important; }
-  body:has(#MainContent .hero) .nav-logo { width:min(132px,40vw)!important; height:60px!important; padding:5px 10px!important; border:1px solid rgba(247,241,223,.14)!important; border-radius:18px!important; background-color:rgba(247,241,223,.88)!important; box-shadow:0 16px 42px rgba(0,0,0,.28); backdrop-filter:blur(18px); }
-  body:has(#MainContent .hero) .nav-logo img { width:100%!important; height:100%!important; object-fit:contain!important; }
-  body:has(#MainContent .hero) .nav-hamburger { display:flex!important; width:48px!important; height:48px!important; align-items:center!important; justify-content:center!important; border:1px solid rgba(247,241,223,.16)!important; border-radius:50%!important; background:rgba(2,6,5,.42)!important; backdrop-filter:blur(16px); }
-  body:has(#MainContent .hero) .nav-hamburger span { background:#f7f1df!important; }
-  body:has(#MainContent .hero) .hero { height:100svh!important; min-height:640px!important; max-height:none!important; overflow:hidden!important; border-radius:0 0 32px 32px!important; background:#020605!important; }
-  body:has(#MainContent .hero) .slide::after { background:linear-gradient(180deg, rgba(2,6,5,.12) 0%, rgba(2,6,5,.18) 35%, rgba(2,6,5,.92) 100%), radial-gradient(circle at 50% 24%, rgba(255,255,255,.12), transparent 18rem)!important; }
-  body:has(#MainContent .hero) .slide-content { right:18px!important; bottom:105px!important; left:18px!important; max-width:none!important; padding:20px!important; border:1px solid rgba(247,241,223,.12)!important; border-radius:28px!important; background:rgba(2,6,5,.36)!important; box-shadow:0 24px 72px rgba(0,0,0,.36); backdrop-filter:blur(18px); }
-  body:has(#MainContent .hero) .slide-label { color:#c7a15c!important; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif!important; font-size:10px!important; font-weight:900!important; letter-spacing:.16em!important; }
-  body:has(#MainContent .hero) .slide-title { color:#f7f1df!important; font-size:clamp(46px,13vw,64px)!important; line-height:.92!important; letter-spacing:-.065em!important; }
-  body:has(#MainContent .hero) .slide-text { color:rgba(247,241,223,.74)!important; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif!important; font-size:14px!important; line-height:1.55!important; }
-  body:has(#MainContent .hero) .slide-btns { display:grid!important; grid-template-columns:1fr!important; gap:9px!important; max-width:none!important; }
-  body:has(#MainContent .hero) .btn, body:has(#MainContent .hero) .btn-ghost { min-height:54px!important; border-radius:17px!important; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif!important; font-size:12px!important; font-weight:900!important; letter-spacing:.12em!important; }
-  body:has(#MainContent .hero) .btn { border:0!important; background:linear-gradient(135deg,#b9e56a,#fff0a0)!important; color:#07130e!important; }
-  body:has(#MainContent .hero) .section { padding:58px 14px!important; background:transparent!important; }
-  body:has(#MainContent .hero) .sec-kicker, body:has(#MainContent .hero) .tour-badge, body:has(#MainContent .hero) .camp-meta { color:#c7a15c!important; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif!important; }
-  body:has(#MainContent .hero) .sec-title, body:has(#MainContent .hero) .camp-title, body:has(#MainContent .hero) .tour-title, body:has(#MainContent .hero) .faq-question, body:has(#MainContent .hero) .journal-title { color:#f7f1df!important; }
-  body:has(#MainContent .hero) .sec-body, body:has(#MainContent .hero) .tour-desc, body:has(#MainContent .hero) .faq-body-inner, body:has(#MainContent .hero) .journal-excerpt { color:rgba(247,241,223,.7)!important; }
-  body:has(#MainContent .hero) .camp-card, body:has(#MainContent .hero) .tour-card, body:has(#MainContent .hero) .ethic-card, body:has(#MainContent .hero) .faq-item, body:has(#MainContent .hero) .journal-card, body:has(#MainContent .hero) .pickup-note { overflow:hidden!important; border:1px solid rgba(247,241,223,.12)!important; border-radius:28px!important; background:rgba(247,241,223,.065)!important; box-shadow:none!important; }
-  body:has(#MainContent .hero) .tour-card { padding:12px!important; }
-  body:has(#MainContent .hero) .tour-img { border-radius:22px!important; aspect-ratio:4 / 4.4!important; }
-  body:has(#MainContent .hero) .tour-details, body:has(#MainContent .hero) .journal-link, body:has(#MainContent .hero) .mobile-quick-book a { border:0!important; border-radius:16px!important; background:linear-gradient(135deg,#b9e56a,#fff0a0)!important; color:#07130e!important; }
-  body:has(#MainContent .hero) .mobile-quick-book { z-index:10000!important; padding:10px 14px calc(10px + env(safe-area-inset-bottom))!important; border-top:1px solid rgba(247,241,223,.12)!important; background:rgba(2,6,5,.86)!important; box-shadow:0 -18px 42px rgba(0,0,0,.4)!important; backdrop-filter:blur(20px); }
-  body:has(#MainContent .hero) .mobile-quick-book span { color:rgba(247,241,223,.78)!important; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif!important; }
-}
-
-/* Mobile home speed-booking trim 2026-06-05 */
-@media screen and (max-width: 749px) {
-  body:has(#MainContent .hero) .stats-band,
-  body:has(#MainContent .hero) .camps-section,
-  body:has(#MainContent .hero) .selected-gallery,
-  body:has(#MainContent .hero) .editorial,
-  body:has(#MainContent .hero) .baby-section,
-  body:has(#MainContent .hero) .ethics-section,
-  body:has(#MainContent .hero) .how-section,
-  body:has(#MainContent .hero) .testi-section,
-  body:has(#MainContent .hero) .journal-section,
-  body:has(#MainContent .hero) .booking-section {
-    display: none !important;
-  }
-
-  body:has(#MainContent .hero) .hero {
-    min-height: 600px !important;
-  }
-
-  body:has(#MainContent .hero) .slide-content {
-    bottom: 88px !important;
-    padding: 16px !important;
-  }
-
-  body:has(#MainContent .hero) .slide-title {
-    font-size: clamp(38px, 11vw, 52px) !important;
-  }
-
-  body:has(#MainContent .hero) .slide-text {
-    display: -webkit-box !important;
-    overflow: hidden !important;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  body:has(#MainContent .hero) .tours-section {
-    padding-top: 42px !important;
-  }
-
-  body:has(#MainContent .hero) .tours-header .sec-body,
-  body:has(#MainContent .hero) .tour-desc,
-  body:has(#MainContent .hero) .tour-meta {
-    display: none !important;
-  }
-
-  body:has(#MainContent .hero) .tour-card {
-    padding: 12px !important;
-    border-radius: 22px !important;
-  }
-
-  body:has(#MainContent .hero) .tour-img {
-    border-radius: 22px !important;
-    aspect-ratio: 4 / 3.6 !important;
-  }
-
-  body:has(#MainContent .hero) .tour-info {
-    padding: 12px !important;
-  }
-
-  body:has(#MainContent .hero) .tour-title {
-    font-size: 22px !important;
-    line-height: 1 !important;
-  }
-
-  body:has(#MainContent .hero) .tour-details {
-    min-height: 44px !important;
-    margin-top: 10px !important;
-  }
-
-  body:has(#MainContent .hero) .faq-section {
-    display: block !important;
-    padding-top: 24px !important;
-  }
-
-  body:has(#MainContent .hero) .faq-section .sec-body,
-  body:has(#MainContent .hero) .faq-item:nth-child(n+4) {
-    display: none !important;
-  }
-
-  body:has(#MainContent .hero) .faq-grid {
-    gap: 8px !important;
-  }
-
-  body:has(#MainContent .hero) .footer {
-    padding: 34px 18px calc(96px + env(safe-area-inset-bottom)) !important;
-  }
-
-  body:has(#MainContent .hero) .footer-top {
-    display: block !important;
-  }
-
-  body:has(#MainContent .hero) .footer-col,
-  body:has(#MainContent .hero) .footer-socials,
-  body:has(#MainContent .hero) .footer-legal {
-    display: none !important;
-  }
-
-  body:has(#MainContent .hero) .footer-about {
-    max-width: none !important;
-    font-size: 12px !important;
-    line-height: 1.55 !important;
   }
 }

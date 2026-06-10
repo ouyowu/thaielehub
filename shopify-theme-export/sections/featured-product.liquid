@@ -484,7 +484,13 @@
   {%- endif -%}
 
   <script type="application/ld+json">
-    {{ product | structured_data | replace: 'Living Green', 'Thaielehub' | replace: 'Big Boy', 'Thaielehub' }}
+    {%- assign featured_product_schema = product | structured_data -%}
+    {%- assign featured_product_schema = featured_product_schema
+      | replace: 'Living Green', 'Thaielehub'
+      | replace: 'Big Boy', 'Thaielehub'
+      | replace: '"offers":{', '"offers":{"shippingDetails":{"@type":"OfferShippingDetails","shippingDestination":{"@type":"DefinedRegion","addressCountry":"TH"},"shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"THB"},"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"}}},"hasMerchantReturnPolicy":{"@type":"MerchantReturnPolicy","applicableCountry":"TH","returnPolicyCategory":"https://schema.org/MerchantReturnFiniteReturnWindow","merchantReturnDays":1,"returnFees":"https://schema.org/FreeReturn","refundType":"https://schema.org/FullRefund"},'
+    -%}
+    {{ featured_product_schema }}
   </script>
 
   {% if product.media.size > 0 %}

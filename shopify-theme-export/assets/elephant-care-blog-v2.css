@@ -44,10 +44,15 @@ body:has(#MainContent .elehub-editorial-footer) .shopify-section-group-footer-gr
   padding: 0 40px;
 }
 
-.elehub-editorial-header__nav-left {
+.elehub-editorial-header__nav-left,
+.elehub-editorial-header__nav-right {
   display: flex;
   align-items: center;
   gap: 28px;
+}
+
+.elehub-editorial-header__nav-right {
+  justify-content: flex-end;
 }
 
 .elehub-editorial-header__tours {
@@ -112,6 +117,7 @@ body:has(#MainContent .elehub-editorial-footer) .shopify-section-group-footer-gr
 }
 
 .elehub-editorial-header__nav-left a,
+.elehub-editorial-header__nav-right a,
 .elehub-editorial-header__drawer a {
   color: #1a1a1a;
   font-size: 11px;
@@ -122,21 +128,19 @@ body:has(#MainContent .elehub-editorial-footer) .shopify-section-group-footer-gr
 }
 
 .elehub-editorial-header__logo {
-  color: #1a1a1a;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.36em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(132px, 10vw, 180px);
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
-.elehub-editorial-header__nav-right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 18px;
+.elehub-editorial-header__logo img {
+  display: block;
+  width: 100%;
+  max-height: 76px;
+  object-fit: contain;
 }
 
 .elehub-editorial-header__icon {
@@ -248,6 +252,7 @@ body:has(#MainContent .elehub-editorial-footer) .shopify-section-group-footer-gr
   }
 
   .elehub-editorial-header__nav-left,
+  .elehub-editorial-header__nav-right a,
   .elehub-editorial-header__icon {
     display: none;
   }

@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "elephant-product-symmetry",
+      "type": "elephant-product-gsc",
       "settings": {}
     }
   },

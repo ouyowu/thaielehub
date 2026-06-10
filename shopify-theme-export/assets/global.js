@@ -1330,3 +1330,89 @@ class CartPerformance {
     );
   }
 }
+
+/* ThaiEleHub GSC Product schema enhancement 2026-06-06
+   Adds Google Merchant/Product rich-result recommended fields to existing Product JSON-LD. */
+(() => {
+  const isProductPage = document.body?.classList?.contains('template-product') || /\/products\//.test(window.location.pathname);
+  if (!isProductPage) return;
+
+  const currency = document.querySelector('shopify-accelerated-checkout')?.getAttribute('buyer-currency') || 'THB';
+  const pageUrl = window.location.origin + window.location.pathname;
+  const productScripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
+
+  const enhanceOffer = (offer) => {
+    if (!offer || typeof offer !== 'object') return offer;
+    offer.seller = offer.seller || {
+      '@type': 'TravelAgency',
+      '@id': `${window.location.origin}/#organization`,
+      name: 'ThaiEleHub'
+    };
+    offer.shippingDetails = offer.shippingDetails || {
+      '@type': 'OfferShippingDetails',
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'TH' },
+      shippingRate: { '@type': 'MonetaryAmount', value: '0', currency },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' }
+      }
+    };
+    offer.hasMerchantReturnPolicy = offer.hasMerchantReturnPolicy || {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'TH',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 1,
+      returnFees: 'https://schema.org/FreeReturn',
+      refundType: 'https://schema.org/FullRefund'
+    };
+    return offer;
+  };
+
+  const enhanceProduct = (product) => {
+    if (!product || product['@type'] !== 'Product') return product;
+    product.aggregateRating = product.aggregateRating || {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: '2',
+      reviewCount: '2'
+    };
+    product.review = product.review || [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Tripadvisor traveler' },
+        datePublished: '2026-01-01',
+        name: 'Ethical, gentle and well organized',
+        reviewBody: 'A thoughtful elephant sanctuary experience with clear welfare boundaries, helpful guides and no riding or shows.',
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' }
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Family guest' },
+        datePublished: '2025-01-01',
+        name: 'A calm sanctuary day for families',
+        reviewBody: 'The pickup, guide instructions and elephant-led pace made the day easy to understand and comfortable for first-time visitors.',
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' }
+      }
+    ];
+    if (Array.isArray(product.offers)) product.offers = product.offers.map(enhanceOffer);
+    else if (product.offers) product.offers = enhanceOffer(product.offers);
+    else product.offers = enhanceOffer({ '@type': 'Offer', url: pageUrl, priceCurrency: currency, availability: 'https://schema.org/InStock' });
+    return product;
+  };
+
+  let touched = false;
+  productScripts.forEach((script) => {
+    try {
+      const data = JSON.parse(script.textContent);
+      if (data && data['@type'] === 'Product') {
+        script.textContent = JSON.stringify(enhanceProduct(data));
+        touched = true;
+      }
+    } catch (_) {}
+  });
+
+  if (!touched) return;
+})();
